@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>升中面试备战看板 · 定制版 v4</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='11' cy='11' r='7' fill='%23CFCBC4'/%3E%3Ccircle cx='11' cy='11' r='3.6' fill='%23F2B8C6'/%3E%3Ccircle cx='29' cy='11' r='7' fill='%23CFCBC4'/%3E%3Ccircle cx='29' cy='11' r='3.6' fill='%23F2B8C6'/%3E%3Ccircle cx='20' cy='23' r='13' fill='%23CFCBC4'/%3E%3Ccircle cx='15' cy='21' r='2' fill='%2333302C'/%3E%3Ccircle cx='25' cy='21' r='2' fill='%2333302C'/%3E%3Cellipse cx='20' cy='26' rx='3' ry='2.2' fill='%23F08CA6'/%3E%3Cellipse cx='13' cy='25' rx='2.5' ry='1.6' fill='%23F2B8C6'/%3E%3Cellipse cx='27' cy='25' rx='2.5' ry='1.6' fill='%23F2B8C6'/%3E%3C/svg%3E">
+<style>
+  /* ===== 花枝鼠滚动条 ===== */
+  ::-webkit-scrollbar{width:24px}
+  ::-webkit-scrollbar-track{background:#F3EDE4;border-radius:12px;border:2px solid #EAE2D6}
+  ::-webkit-scrollbar-thumb{
+    min-height:90px;border-radius:12px;border:3px solid #F3EDE4;
+    background-color:#F9D9E3;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='11' cy='11' r='7' fill='%23CFCBC4'/%3E%3Ccircle cx='11' cy='11' r='3.6' fill='%23F2B8C6'/%3E%3Ccircle cx='29' cy='11' r='7' fill='%23CFCBC4'/%3E%3Ccircle cx='29' cy='11' r='3.6' fill='%23F2B8C6'/%3E%3Ccircle cx='20' cy='23' r='13' fill='%23CFCBC4'/%3E%3Ccircle cx='15' cy='21' r='2' fill='%2333302C'/%3E%3Ccircle cx='25' cy='21' r='2' fill='%2333302C'/%3E%3Cellipse cx='20' cy='26' rx='3' ry='2.2' fill='%23F08CA6'/%3E%3Cellipse cx='13' cy='25' rx='2.5' ry='1.6' fill='%23F2B8C6'/%3E%3Cellipse cx='27' cy='25' rx='2.5' ry='1.6' fill='%23F2B8C6'/%3E%3C/svg%3E");
+    background-size:32px 32px;background-position:center 6px;background-repeat:no-repeat;
+  }
+  ::-webkit-scrollbar-thumb:hover{background-color:#F4BFD0}
+  ::-webkit-scrollbar-thumb:active{background-color:#EEA9C0}
+  :root{
+    --bg:#FAF7F2; --card:#FFFFFF; --ink:#2B2622; --ink2:#6B6259; --ink3:#A39A8E;
+    --line:#EBE4DA; --accent:#C4573B; --accent-soft:#F7E4DD;
+    --done:#2F7D6D; --done-soft:#E2F0EC;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Microsoft YaHei","PingFang HK",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;padding-bottom:60px}
+  .wrap{max-width:980px;margin:0 auto;padding:0 16px}
+
+  /* ===== Header ===== */
+  header{background:linear-gradient(135deg,#C4573B,#A8432C);color:#fff;padding:28px 0 22px}
+  header h1{font-size:22px;letter-spacing:1px}
+  header p{font-size:13px;opacity:.85;margin-top:4px}
+  .hero{display:flex;align-items:center;gap:18px;margin-top:18px;flex-wrap:wrap}
+  .hero .num{font-size:40px;font-weight:700;line-height:1}
+  .hero .lbl{font-size:13px;opacity:.85}
+  .pbar{flex:1;min-width:200px;height:10px;background:rgba(255,255,255,.25);border-radius:5px;overflow:hidden}
+  .pbar>i{display:block;height:100%;background:#fff;border-radius:5px;transition:width .4s}
+
+  /* ===== Tabs ===== */
+  nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap}
+  .tab{padding:8px 16px;border-radius:99px;border:1px solid var(--line);background:#fff;font-size:14px;cursor:pointer;color:var(--ink2)}
+  .tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .tab .b{font-size:12px;opacity:.7;margin-left:4px}
+
+  /* ===== Search & chips ===== */
+  .tools{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 6px;align-items:center}
+  .search{flex:1;min-width:220px;padding:10px 16px;border:1px solid var(--line);border-radius:99px;font-size:14px;background:#fff;outline:none}
+  .search:focus{border-color:var(--accent)}
+  .chip{padding:6px 14px;border-radius:99px;border:1px solid var(--line);background:#fff;font-size:13px;cursor:pointer;color:var(--ink2)}
+  .chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
+
+  /* ===== Question cards ===== */
+  .cathead{margin:26px 0 10px;font-size:15px;font-weight:700;display:flex;align-items:center;gap:10px}
+  .cathead .mini{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden;max-width:160px}
+  .cathead .mini>i{display:block;height:100%;background:var(--done);border-radius:3px}
+  .cathead .pc{font-size:12px;color:var(--ink3)}
+  .catnote{background:#FFF9EC;border:1px solid #F0DFBC;border-radius:12px;padding:12px 16px;margin:0 0 12px}
+  .catnote .nt{font-size:13.5px;font-weight:700;color:#8A5A16;margin-bottom:6px}
+  .catnote .nl{font-size:13px;color:#6B5B42;margin-top:4px;line-height:1.6}
+  .catnote .nl b{display:inline-block;min-width:26px;color:#B8860B;font-weight:700}
+  .q{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:12px;overflow:hidden}
+  .q .head{display:flex;gap:10px;align-items:flex-start;padding:14px 16px;cursor:pointer}
+  .q .head:hover{background:#FDFBF8}
+  .q .no{flex:none;width:44px;height:24px;border-radius:6px;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .q.mastered .no{background:var(--done-soft);color:var(--done)}
+  .q .qt{flex:1}
+  .q .qt .en{font-size:14px;font-weight:600}
+  .q .qt .cn{font-size:13px;color:var(--ink2);margin-top:2px}
+  .q .mk{flex:none;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink3);cursor:pointer;user-select:none}
+  .q .mk input{width:18px;height:18px;accent-color:var(--done);cursor:pointer}
+  .q .arrow{flex:none;color:var(--ink3);transition:transform .2s;margin-top:4px}
+  .q.open .arrow{transform:rotate(90deg)}
+  .q .body{display:none;padding:0 16px 16px;border-top:1px dashed var(--line)}
+  .q.open .body{display:block}
+  .blk{margin-top:12px}
+  .blk .tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:6px}
+  .tag.tip{background:#FDF3E3;color:#9A6B15}
+  .tag.cn{background:#E8EFF9;color:#375F9E}
+  .tag.en{background:#EFEAFA;color:#6B4FB0}
+  .tag.yue{background:#FDE8EF;color:#B03A6B}
+  .blk p{font-size:14px}
+  .blk p.tipL{font-size:12.5px;color:var(--ink2);margin-top:5px;padding-left:10px;border-left:2px solid #F0DFBC}
+  .blk p.tipL b{color:#B8860B;margin-right:4px}
+  .blk p.yueTxt{background:#FDF4F8;border-left:3px solid #E79BBC;padding:10px 12px;border-radius:0 8px 8px 0;font-size:14px}
+  .yueNote{font-size:12px;color:var(--ink3);margin-top:6px}
+  .blk .alt{font-size:13.5px;background:#F5FBF9;border-left:3px solid #8FC7B8;padding:8px 12px;border-radius:0 8px 8px 0;margin-top:6px}
+
+  /* ===== School cards ===== */
+  .school{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:14px}
+  .school h3{font-size:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .school h3 .pill{font-size:11px;background:var(--accent-soft);color:var(--accent);padding:3px 10px;border-radius:99px;font-weight:600}
+  .school ul{margin:10px 0 0 18px;font-size:13.5px;color:var(--ink2)}
+  .school li{margin-bottom:4px}
+  .ansbox{background:#FBF8F4;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:10px;font-size:13.5px}
+  .ansbox b{color:var(--accent)}
+
+  /* ===== Checklist ===== */
+  .ckgroup{margin-top:20px}
+  .ckgroup h3{font-size:15px;margin-bottom:8px}
+  .ck{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px;cursor:pointer}
+  .ck input{width:20px;height:20px;accent-color:var(--done);cursor:pointer;flex:none;margin-top:2px}
+  .ck.done{opacity:.55}
+  .ck.done .t{text-decoration:line-through}
+  .ck .t{font-size:14px}
+  .ck .d{font-size:12px;color:var(--ink3);margin-top:2px}
+
+  /* ===== Footer tools ===== */
+  .foot{margin-top:30px;display:flex;gap:10px;flex-wrap:wrap}
+  .btn{padding:9px 18px;border-radius:99px;border:1px solid var(--line);background:#fff;font-size:13px;cursor:pointer;color:var(--ink2)}
+  .btn.warn{color:#B03A3A;border-color:#E7C4C4}
+  .hidden{display:none!important}
+  .none{padding:40px;text-align:center;color:var(--ink3);font-size:14px}
+
+  /* ===== 饼干 & 装扮 ===== */
+  .statusbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:14px}
+  .cookiebar{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);border-radius:99px;padding:6px 14px;font-size:14px}
+  .cookiebar .c{font-size:18px}
+  .feedbtn{background:#fff;color:var(--accent);border:none;border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;cursor:pointer}
+  .feedbtn:disabled{opacity:.45;cursor:not-allowed}
+  .outfitLbl{font-size:13px;background:rgba(255,255,255,.18);border-radius:99px;padding:6px 14px}
+  @keyframes munch{0%{transform:scale(1)}40%{transform:scale(1.07,.93)}70%{transform:scale(.96,1.05)}100%{transform:scale(1)}}
+  .mascot.munch svg{animation:munch .5s ease!important}
+  .fly{position:fixed;font-size:26px;z-index:99;pointer-events:none;transition:all .7s ease-in}
+  .confetti{position:fixed;top:-20px;width:10px;height:16px;z-index:98;pointer-events:none;animation:fall linear forwards}
+  @keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+
+  /* ===== 特权商店 ===== */
+  .shopitem{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+  .shopitem .ic{font-size:28px;flex:none}
+  .shopitem .info{flex:1}
+  .shopitem .info .nm{font-weight:700;font-size:15px}
+  .shopitem .info .ds{font-size:13px;color:var(--ink2);margin-top:2px}
+  .shopitem .buy{flex:none;background:var(--accent);color:#fff;border:none;border-radius:99px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer}
+  .shopitem .buy:disabled{background:var(--ink3);cursor:not-allowed;opacity:.6}
+  .record{font-size:13px;color:var(--ink2);padding:8px 14px;background:#FBF8F4;border:1px dashed var(--line);border-radius:10px;margin-bottom:6px}
+
+  /* ===== 主页奖励橱窗 ===== */
+  .rwrap{margin:12px 0 2px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+  .rwrap .rt{font-size:13px;font-weight:700;color:var(--ink2);margin-bottom:8px}
+  .rwrap .row{display:flex;gap:8px;flex-wrap:wrap}
+  .rchip{display:flex;align-items:center;gap:6px;background:#FBF8F4;border:1.5px solid var(--line);border-radius:99px;padding:6px 12px;font-size:13px;cursor:pointer;transition:all .15s}
+  .rchip:hover{border-color:var(--accent)}
+  .rchip .pr{font-size:12px;color:var(--ink3)}
+  .rchip.can{border-color:var(--done);background:var(--done-soft)}
+  .rchip.can .pr{color:var(--done);font-weight:700}
+
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  @keyframes bellring{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
+  @keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+  @keyframes earwig{0%,88%,100%{transform:rotate(0)}92%{transform:rotate(-10deg)}96%{transform:rotate(6deg)}}
+  .mascot{display:flex;align-items:flex-end;gap:4px;cursor:pointer;user-select:none}
+  .mascot svg{width:96px;height:96px;animation:floaty 3s ease-in-out infinite}
+  .mascot .earL{transform-origin:62px 62px;animation:earwig 4s ease-in-out infinite}
+  .mascot .earR{transform-origin:158px 62px;animation:earwig 4s ease-in-out infinite}
+  .mascot .bell{transform-origin:105px 160px;animation:bellring 2.2s ease-in-out infinite}
+  .bubble{position:relative;background:#fff;color:#C4573B;font-weight:700;font-size:15px;
+    padding:8px 14px;border-radius:14px;margin-bottom:52px;white-space:nowrap;
+    box-shadow:0 3px 8px rgba(0,0,0,.18)}
+  .bubble::after{content:"";position:absolute;left:-7px;bottom:12px;width:14px;height:14px;
+    background:#fff;transform:rotate(45deg);border-radius:2px}
+  .bubble.pop{animation:pop .35s ease}
+
+  @media print{
+    nav,.tools,.foot,.mk,.mascot{display:none!important}
+    .q .body{display:block!important}
+    body{background:#fff}
+    .q,.school,.ck{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>🎓 升中面试备战看板 · 定制版 v4</h1>
+    <p>目标：颜宝铃书院 · 香岛中学 · 银禧中学 · 迦密中学 ｜ 我的标签：适应力强 · 服务领导 · 坚持自学 · 人文关怀 · 勇气与运动</p>
+    <div class="hero">
+      <div><div class="num" id="heroNum">0</div><div class="lbl">题已掌握</div></div>
+      <div class="pbar"><i id="heroBar" style="width:0%"></i></div>
+      <div class="lbl" id="heroPct">0%</div>
+      <div class="mascot" id="mascot" title="点我有惊喜！">
+        <div class="bubble" id="bubble">主人加油！</div>
+        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <!-- 尾巴 -->
+          <path d="M150 185 Q 200 190 205 150 Q 208 128 192 122" fill="none" stroke="#F5A3B7" stroke-width="9" stroke-linecap="round"/>
+          <!-- 小脚脚 -->
+          <ellipse cx="88" cy="192" rx="12" ry="7" fill="#F4F1EC"/>
+          <ellipse cx="122" cy="192" rx="12" ry="7" fill="#F4F1EC"/>
+          <!-- 身体 -->
+          <ellipse cx="105" cy="150" rx="58" ry="48" fill="#CFCBC4"/>
+          <ellipse cx="105" cy="162" rx="36" ry="32" fill="#F4F1EC"/>
+          <!-- 耳朵 -->
+          <g class="earL"><circle cx="62" cy="62" r="26" fill="#CFCBC4"/><circle cx="62" cy="62" r="15" fill="#F2B8C6"/></g>
+          <g class="earR"><circle cx="148" cy="62" r="26" fill="#CFCBC4"/><circle cx="148" cy="62" r="15" fill="#F2B8C6"/></g>
+          <!-- 头 -->
+          <ellipse cx="105" cy="105" rx="52" ry="46" fill="#CFCBC4"/>
+          <!-- 口鼻 -->
+          <ellipse cx="105" cy="122" rx="24" ry="16" fill="#F4F1EC"/>
+          <!-- 腮红（常驻） -->
+          <ellipse cx="72" cy="112" rx="8" ry="5" fill="#F2B8C6" opacity=".85"/>
+          <ellipse cx="138" cy="112" rx="8" ry="5" fill="#F2B8C6" opacity=".85"/>
+          <!-- 鼻子 -->
+          <ellipse cx="105" cy="114" rx="7" ry="5" fill="#F08CA6"/>
+          <!-- 表情：正常 -->
+          <g id="faceN">
+            <circle cx="85" cy="98" r="6" fill="#33302C"/><circle cx="87" cy="96" r="2" fill="#fff"/>
+            <circle cx="125" cy="98" r="6" fill="#33302C"/><circle cx="127" cy="96" r="2" fill="#fff"/>
+            <path d="M105 119 Q 99 125 93 121 M105 119 Q 111 125 117 121" fill="none" stroke="#8A847C" stroke-width="2.5" stroke-linecap="round"/>
+          </g>
+          <!-- 表情：开心（笑弯眼+大笑） -->
+          <g id="faceH" style="display:none">
+            <path d="M78,100 Q85,91 92,100" fill="none" stroke="#33302C" stroke-width="4" stroke-linecap="round"/>
+            <path d="M118,100 Q125,91 132,100" fill="none" stroke="#33302C" stroke-width="4" stroke-linecap="round"/>
+            <path d="M94,120 Q105,131 116,120" fill="none" stroke="#8A847C" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <!-- 表情：星星眼（超兴奋） -->
+          <g id="faceS" style="display:none">
+            <polygon points="85,87 88,94 96,94 89,99 91,106 85,101 79,106 81,99 74,94 82,94" fill="#F2C14E"/>
+            <polygon points="125,87 128,94 136,94 129,99 131,106 125,101 119,106 121,99 114,94 122,94" fill="#F2C14E"/>
+            <path d="M92,120 Q105,133 118,120 Q105,128 92,120 Z" fill="#8A847C"/>
+          </g>
+          <!-- 表情：打瞌睡 -->
+          <g id="faceZ" style="display:none">
+            <path d="M78,98 L92,98 M118,98 L132,98" stroke="#33302C" stroke-width="4" stroke-linecap="round"/>
+            <path d="M100,122 Q105,120 110,122" fill="none" stroke="#8A847C" stroke-width="3" stroke-linecap="round"/>
+            <text x="156" y="56" font-size="22" fill="#9A938A" font-weight="bold">z</text>
+            <text x="170" y="38" font-size="16" fill="#B9B4AC" font-weight="bold">z</text>
+          </g>
+          <!-- 胡须 -->
+          <path d="M70 118 L 48 114 M71 124 L 50 126 M140 118 L 162 114 M139 124 L 160 126" stroke="#B9B4AC" stroke-width="2" stroke-linecap="round"/>
+          <!-- 小手 -->
+          <ellipse cx="83" cy="170" rx="10" ry="7" fill="#F4F1EC"/>
+          <ellipse cx="127" cy="170" rx="10" ry="7" fill="#F4F1EC"/>
+          <!-- 手钟！ -->
+          <g class="bell">
+            <path d="M105 143 Q 105 137 110 137" fill="none" stroke="#D9A72E" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="105" cy="160" r="13" fill="#F2C14E" stroke="#D9A72E" stroke-width="2"/>
+            <circle cx="105" cy="163" r="4" fill="#8A5A16"/>
+          </g>
+          <!-- 装扮层（JS 控制） -->
+          <g id="outfitG"></g>
+        </svg>
+      </div>
+    </div>
+    <div class="statusbar">
+      <span class="cookiebar"><span class="c">🍪</span> 老鼠饼干 × <b id="cookieN">0</b>&nbsp;
+        <button class="feedbtn" id="feedBtn">喂小鼠</button></span>
+      <span class="outfitLbl" id="outfitLbl">🎀 装扮：原味小鼠（0/43 题）</span>
+      <span class="outfitLbl" id="streakLbl">🔥 连击 0 天</span>
+      <span class="outfitLbl" id="moodLbl">💗 心情：😴 打瞌睡</span>
+    </div>
+  </div>
+</header>
+
+<nav><div class="wrap"><div class="tabs">
+  <button class="tab on" data-tab="bank">📚 题库 <span class="b" id="cntBank"></span></button>
+  <button class="tab" data-tab="school">🏫 学校策略</button>
+  <button class="tab" data-tab="parent">👨‍👩‍👧 家长面谈</button>
+  <button class="tab" data-tab="check">✅ 打卡清单 <span class="b" id="cntCheck"></span></button>
+  <button class="tab" data-tab="shop">🎁 特权商店</button>
+</div></div></nav>
+
+<div class="wrap">
+
+<!-- ============ TAB: 题库 ============ -->
+<section id="tab-bank">
+  <div class="rwrap" id="rewardStrip">
+    <div class="rt">🎁 饼干可以换什么？（完成任务得饼干，点这里去兑换）</div>
+    <div class="row" id="rewardRow"></div>
+  </div>
+  <div class="tools">
+    <input class="search" id="search" placeholder="🔍 搜索题目或答案关键词，如：粤语 / 手钟 / 动物 / 义工 / 游泳 / 王计兵…">
+    <span style="font-size:12px;color:var(--ink3)">点击题目展开答案 · 打钩记录掌握</span>
+  </div>
+  <div class="tools" id="chips"></div>
+  <div id="list"></div>
+</section>
+
+<!-- ============ TAB: 学校策略 ============ -->
+<section id="tab-school" class="hidden">
+  <div id="schools"></div>
+</section>
+
+<!-- ============ TAB: 家长面谈 ============ -->
+<section id="tab-parent" class="hidden">
+  <div id="parents"></div>
+</section>
+
+<!-- ============ TAB: 打卡清单 ============ -->
+<section id="tab-check" class="hidden">
+  <div id="checks"></div>
+</section>
+
+<!-- ============ TAB: 特权商店 ============ -->
+<section id="tab-shop" class="hidden">
+  <div style="margin:14px 0 4px;font-size:13px;color:var(--ink2)">🍪 每完成一项打卡任务得 1 块老鼠饼干（喂小鼠或在这里兑换特权都可以）。特权由家长手动兑现～</div>
+  <div id="shopWallet" style="margin:8px 0 14px;font-size:15px;font-weight:700;color:var(--accent)"></div>
+  <div id="shopList"></div>
+  <div id="shopRecord" style="margin-top:20px"></div>
+</section>
+
+<div class="foot">
+  <button class="btn" onclick="window.print()">🖨️ 打印 / 导出 PDF</button>
+  <button class="btn warn" onclick="resetAll()">🗑️ 清空所有打卡记录</button>
+</div>
+</div>
+
+<script>
+/* ================= 题库数据 ================= */
+/* 观点题通用思路卡：出现在「价值观两难」与「社会与时事」两个分类下面 */
+const OPINION_NOTE={
+ title:"🧭 观点题三大思路 / Three Ways to Answer an Opinion Question / 觀點題三大思路",
+ cn:"① 有正反面：辩证思考——先承认现象存在的合理性，再讲条件与边界，用举例、对比、结合时事与历史来支撑。② 只有一个明确立场（支持或反对）：先明确表态，再给 2-3 个理由 + 一个例子，最后重申观点。③ 涉及时事或政府做法：从「学生自己 → 家庭 → 社会」三层递进，既讲短期措施的合理性，也讲大众长期行为的影响。",
+ en:"① If the issue has two sides, think dialectically: first acknowledge why the phenomenon exists, then discuss the conditions and limits — support with examples, contrasts and current or historical events. ② If there is only one clear stance (agree or disagree), state it first, give two or three reasons plus one example, then restate your point. ③ If it relates to current affairs or government policy, answer in three layers — yourself as a student, then your family, then society — covering both why a short-term measure is reasonable and how the public's long-term behaviour matters.",
+ yue:"① 如果題目有正反面，就用辯證思維：先承認嗰個現象點解會存在，再講條件同界線，用舉例、對比，結合時事同歷史去支撐。② 如果只有一個明確立場（支持或者反對），就先清清楚楚表態，再講兩三個理由加一個例子，最後重申睇法。③ 如果同社會熱點、政府做法有關，就由「自己（學生）→ 家庭 → 社會」三層出發，既要講短期措施嘅合理性，都要講大眾長期行為嘅影響。"
+};
+
+const CATS = [
+  {id:"A", name:"背景与动机"},
+  {id:"B", name:"性格与压力"},
+  {id:"C", name:"价值观两难", note:OPINION_NOTE},
+  {id:"D", name:"社会与时事", note:OPINION_NOTE},
+  {id:"E", name:"收尾提问"},
+  {id:"F", name:"补充必考"},
+];
+const QS = [
+{id:"Q1",cat:"A",en:"Why do you apply to our school?",cn:"你为什么申请我们学校？",
+ tip:"必背目标学校那一版！见「学校策略」页。面试前确认当天面哪间，就只背那版，别背错校名！",
+ tipEn:"Memorise the version for the school you are visiting that day — never mix up the school names.",
+ tipYue:"背熟你要面嗰間學校嗰一版！面試當日係邊間就只背邊間，千祈唔好講錯校名！",
+ cnA:"见「学校策略」页的四个定制版本（每校一版，已嵌入该校校训与特色）。",
+ enA:"See the four school-specific versions in the 'School Strategy' tab.",
+ yue:"通用开头句式：「我揀贵校，因为…（讲一个学校特色）。我好认同贵校嘅办学理念，希望我嘅…（服务精神/音乐/适应力）可以喺呢度继续发挥。」讲学校名之前停一拍，确认冇讲错！",
+ yueNote:"粤语小贴士：Q1 是最不该出错的一题，若紧张可用普通话完整作答，先求稳。"},
+
+{id:"Q2",cat:"A",en:"Can you introduce your primary school?",cn:"你能介绍一下你的小学吗？",
+ tip:"三层结构：学术基础 → 课外社团（手钟队＝学一门新技能，小篮球队＝交新朋友）→ 感恩师生。最后一定要用 25→8 的数据收尾。",
+ tipEn:"Three layers: academic foundation → clubs (handbells = a new skill, mini basketball = new friends) → gratitude, ending with your 25th-to-8th progress.",
+ tipYue:"三層講：學術根基 → 課外社團（手鐘＝學新技能，小籃球＝識新朋友）→ 感恩老師同學，最後用 25 名→第 8 名嘅數據收尾。",
+ cnA:"我就读圣三一堂小学。学校给了我扎实的学术基础，更重要的是给了我很多课本以外的机会。学校有很多社团和兴趣小组，我参加了手钟队，学会了一门新技能；也参加过小篮球队，认识了很多新朋友。我刚来香港时，老师和同学帮了我很多，我的年级排名也从第 25 名进步到第 8 名。我非常感恩母校。",
+ enA:"I study at Holy Trinity Church Primary School. It gave me a strong academic foundation and, more importantly, many chances beyond textbooks. My school has lots of clubs and interest groups, so I joined the handbell team and learned a brand-new skill, and I also played in the mini basketball team, where I made many new friends. When I first came to Hong Kong, my teachers and classmates helped me a lot, and I improved from 25th to 8th in my grade. I am very grateful to my school.",
+ yue:"「我就讀聖三一堂小學。學校畀咗我扎實嘅學術基礎，更重要係畀咗我好多課本以外嘅機會。學校有好多社團同興趣小組，我參加咗手鐘隊，學識一門新技能；我都打過小籃球隊，識咗好多新朋友。我初嚟香港嗰陣，老師同同學幫咗我好多，我嘅年級排名由第 25 名進步到第 8 名。我好感恩我嘅母校。」",
+ yueNote:"手鐘用「參加」，籃球用「打過」，講社團名要清楚、慢少少，唔好急。"},
+
+{id:"Q3",cat:"A",en:"Can you share an unforgettable moment in your primary school?",cn:"分享一个小学难忘的时刻",
+ tip:"讲「两个第一次」，一刚一柔：① 游泳比赛＝勇气与坚持（第一次正规赛道、第一次跳台入水、紧张但坚持完赛）；② 卖旗＝善心与突破（第一次向陌生人开口，收到第一笔善款）。金句：「勇气不是不怕，而是怕也要做完。」时间不够就只讲游泳（更独特）。",
+ tipEn:"Two 'first times', one about courage and one about kindness. Gold line: 'Courage is not having no fear — it is finishing even when you are afraid.' Short of time? Tell the swimming story only.",
+ tipYue:"講兩個『第一次』：① 游泳比賽＝勇氣同堅持；② 賣旗＝善心同突破。金句：「勇氣唔係唔怕，係驚都照做完成件事。」唔夠時間就只講游泳。",
+ cnA:"最难忘的是我来了香港之后的两个『第一次』。第一个是参加九龙城区的游泳比赛，我报了 100 米和 50 米。那是我第一次在正规泳道上和厉害的选手同场竞技。我从来没受过专业训练，也从来没跳过水，只能看着其他选手的动作，学着他们第一次从跳台入水。开始时我紧张得心跳很快，但最后我坚持游完了全程。那一刻我明白：勇气不是不怕，而是怕也要做完。第二个是第一次参加卖旗。我和好朋友戴上可爱的动物头套，站在街上向陌生人募捐。起初我小心翼翼，不敢开口；当收到第一笔善款时，那种欣喜我一辈子都记得。我发现做善事不分年龄大小，我也可以出一分绵薄之力。",
+ enA:"Two 'first times' after I came to Hong Kong are unforgettable. The first was the swimming competition in Kowloon City District, where I entered the 100m and 50m races. It was my first time competing in proper lanes against strong swimmers. I had never had professional training and had never dived off a starting block, so I watched the other swimmers and copied them to make my first dive. My heart was beating fast at the start, but I kept going and finished the whole race. I learned that courage is not having no fear — it is finishing even when you are afraid. The second was my first flag-selling day. My good friend and I put on cute animal headpieces and stood on the street asking strangers to donate. At first I was nervous and did not dare to speak up, but when the first donation came in, I felt a joy I will never forget. I learned that kindness has no age limit — even a young student like me can do her small part.",
+ yue:"「最難忘嘅，係我嚟香港之後嘅兩個『第一次』。第一個係參加九龍城區嘅游泳比賽，我報咗 100 米同 50 米。嗰次係我第一次喺正式泳線同埋好勁嘅選手一齊比賽。我從來冇受過專業訓練，又未試過跳水，唯有睇住其他選手點做，學佢哋第一次由跳台跳落水。開頭我心跳得好快、好緊張，但最後我都堅持游完全程。我明白到：勇氣唔係唔怕，係驚都照做完成件事。第二個係我第一次賣旗。我同好朋友戴住得意嘅動物頭套，企喺條街度同陌生人募捐。開頭我好驚，唔敢開口；但收到第一筆善款嗰陣，嗰種開心我一世都記得。我發現做善事唔分年紀，我都可以出一分力。」",
+ yueNote:"兩個故事中間停一拍再講第二個，講嘅時候笑住講，面試官會覺得你好真誠。"},
+
+{id:"Q4",cat:"A",en:"How do you allocate your spare time?",cn:"你如何分配业余时间？",
+ tip:"先学习 → 服务/手钟 → 照顾花枝鼠，体现时间管理 + 真实细节。",
+ tipEn:"Study first, then service or handbells, then your pets — showing time management through real details.",
+ tipYue:"先讀書 → 服務／手鐘 → 照顧花枝鼠，顯示你識得分配時間，又有真實細節。",
+ cnA:"我会先完成功课和复习，然后做图书管理员服务或练手钟——平时每周一次，比赛前会加练。周末我照顾我的两只花枝鼠。饲养方法是我自己看视频、查书学回来的。",
+ enA:"First, I finish my homework and revision. Then I do my library duty or practise handbells — usually once a week, and more before competitions. At weekends, I take care of my two fancy rats. I learned how to keep them by watching videos and reading books by myself.",
+ yue:"「我會先做完功課同埋複習，之後做圖書管理員服務或者練手鐘——平時每星期一練，比賽前會加練。週末我會照顧我兩隻花枝鼠。飼養方法係我自己睇視頻、查書學返嚟㗎。」"},
+
+{id:"Q5",cat:"A",en:"How will you get along with new classmates?",cn:"你将如何与中学同学相处？",
+ tip:"三段式：先讲性格（开朗、主动打招呼）→ 讲 ADHD 同学的真实故事（包容与共情，是全篇最打动人的地方）→ 落到中学的具体做法（虚心请教 + 主动帮人 + 手钟队帮队友）。",
+ tipEn:"Character → the ADHD classmate story (your most moving material) → concrete plans for secondary school.",
+ tipYue:"先講性格 → 講 ADHD 同學嘅真實故事（最打動人）→ 落到中學時嘅具體做法（虛心請教＋主動幫人）。",
+ cnA:"我性格开朗友善，会主动打招呼，也会主动帮忙。我遇到过一位很特别的朋友：以前在上海读小学时，班里有位同学有 ADHD，因为行为和别的同学不太一样，很多小朋友不太愿意和她做朋友。我和爸爸邀请她和她妈妈周末一起去郊外的民宿泳池玩水。她很信赖我，后来我成了她为数不多愿意沟通交流的朋友。这件事让我明白：每个同学都有自己的难处，先伸出援手，友谊就会自然发生。到了中学，遇到粤语或功课问题，我会虚心请教；同学有需要，我也会主动帮忙，就像我在手钟队帮助队友练和声一样。",
+ enA:"I am cheerful and friendly, so I will say hello first and smile a lot, and I like to help first. Once, in my primary school in Shanghai, a classmate had ADHD — because her behaviour was different from the others, many children did not want to be her friend. My dad and I invited her and her mum to a guesthouse swimming pool outside the city for a weekend. She trusted me, and I became one of the few friends she was willing to talk to. That taught me that everyone has their own difficulties, and if you reach out first, friendship follows naturally. In secondary school, when I have problems with Cantonese or schoolwork I will ask for help politely, and when a classmate needs help I will offer it first — just like I helped my handbell teammates with their harmony.",
+ yue:"「我性格開朗友善，會主動同人打招呼，都會主動幫人。我以前喺上海讀小學，班度有位同學有 ADHD，因為佢嘅行為同其他小朋友唔同，好多人唔係好想同佢做朋友。我同爸爸邀請佢同佢媽咪週末去郊外嘅民宿泳池玩水。佢好信我，後來我成為佢好少數肯傾偈嘅朋友。呢件事令我明白：每個同學都有自己嘅難處，你先伸出友誼之手，友誼就會自然發生。到咗中學，我遇到粵語或者功課問題，會虛心請教；同學有需要，我都會主動幫手——好似我喺手鐘隊幫隊友練和聲咁。」",
+ yueNote:"ADHD 用英文講最穩陣，唔好勉強譯：『a classmate had ADHD』。"},
+
+{id:"Q6",cat:"A",en:"What are the major differences between primary and secondary schools?",cn:"中小学的主要区别是什么？",
+ tip:"科目更多→自律自学；社团更多、选择更多→「我希望像小学一样，参加我自己喜欢的社团」，最后补一句继续做图书馆服务。",
+ tipEn:"More subjects means more self-discipline; more clubs means more choices — 'I hope to join the clubs I really like, just like in primary school.'",
+ tipYue:"科目多咗要自律；社團多咗、選擇多咗——「我希望好似小學咁，參加我自己鍾意嘅社團」，最後補一句繼續做圖書館服務。",
+ cnA:"中学科目更多，需要更强的自律和自主学习能力。社团也更丰富，而且选择更多。我希望像小学一样，参加我自己喜欢的社团——可能继续手钟或音乐，也可能是全新的兴趣；我也想继续做图书馆服务，为学校出一分力。",
+ enA:"There are more subjects in secondary school, so we need more self-discipline and independent learning. There are also more clubs, with more choices. I hope to join the clubs I really like, just as I did in primary school — maybe handbells or music again, or something brand new. I would also like to keep serving in the library and contribute to the school.",
+ yue:"「中學科目多咗，需要更強嘅自律同自主學習能力。社團都多咗，選擇又多咗。我希望好似小學咁，參加我自己鍾意嘅社團——可能繼續玩手鐘或者音樂，都可能試啲新嘅；我仲想繼續做圖書館服務，為學校出一分力。」"},
+
+{id:"Q7",cat:"A",en:"If you were granted a special talent, what would it be?",cn:"如果给你一种特殊才能，你希望是什么？",
+ tip:"选『语言天赋』，暗合正在学粤语的真实经历，比『过目不忘』更真诚。",
+ tipEn:"Choose 'the gift of languages' — it links to your real Cantonese journey, far more sincere than a photographic memory.",
+ tipYue:"揀『語言天分』，暗合你學緊粵語嘅真實經歷，比『過目不忘』真誠好多。",
+ cnA:"我希望会讲全世界所有语言，这样就能和所有人交朋友。但其实我也在明白：努力也有效——我的粤语和手钟奖都是靠练习，不是靠天分。",
+ enA:"I wish I could speak all the languages in the world, so I could make friends with everyone. But actually, I am learning that hard work works too — my Cantonese and my handbell prizes all came from practice, not talent.",
+ yue:"「我希望識講全世界所有語言，咁就可以同所有人交朋友。但其實我都學緊：努力係有用嘅——我嘅粵語同手鐘獎都係靠練習，唔係靠天分。」"},
+
+{id:"Q38",cat:"A",en:"Why do you choose Hong Kong? / What do you like most about Hong Kong?",cn:"为什么选择香港？（你最喜欢香港什么？）",
+ tip:"新题！主答『人文关怀』：这是一个很有人情味、包容弱势群体的城市。三层递进：个人经历（港大生物多样性博物馆的学生义工讲解）→ 家庭（爸爸来港后做学校义工）→ 社会（义工团体是一个社会的基石与底色）。与 B2 互补：Q38 讲你眼中的香港，B2 讲家庭的决定。",
+ tipEn:"New question. Answer with Hong Kong's human touch: personal experience (HKU museum student volunteers) → family (dad's volunteering) → society (volunteering is the foundation of a society).",
+ tipYue:"新題！主打『人文關懷』：個人經歷（港大博物館嘅學生義工講解）→ 家庭（爸爸做義工）→ 社會（義工團體係社會嘅基石同底色）。",
+ cnA:"我最喜欢香港的『人文关怀』。这是一个很有人情味、很包容的城市：社会很照顾弱势群体，也有非常强大的义工文化。我之前来香港旅游，去过港大生物多样性博物馆，看到大学的学生自愿做讲解老师，很有耐心地为我们小朋友讲解，那一刻我特别感动。我的爸爸来港后也常常做义工，去学校图书馆帮忙，还主动关心新来港的内地家庭。我觉得义工精神是一个社会的基石和底色——一个城市的温度，不是看它有多少高楼，而是看它怎么对待最需要帮助的人。我希望在这样的城市里长大，也成为一个愿意付出的人。",
+ enA:"What I love most about Hong Kong is its human touch. It is a warm and inclusive city: society cares a lot for people in need, and it has a very strong volunteering culture. On an earlier visit I went to the HKU Biodiversity Museum, where university students volunteered as guides and patiently explained things to us children — I was truly moved. After we moved here, my dad also volunteers often, helping in the school library and reaching out to newly arrived Mainland families. I think the spirit of volunteering is the foundation and the underlying character of a society — the warmth of a city is not measured by how many skyscrapers it has, but by how it treats those who need help most. I hope to grow up in a city like this, and become someone who is willing to give.",
+ yue:"「我最鍾意香港嘅『人文關懷』。呢個城市好有人情味、好包容：社會好照顧弱勢社群，又有好強大嘅義工文化。我以前嚟香港旅遊，去過港大生物多樣性博物館，見到大學嘅學生自願做講解員，好有耐性咁同我哋小朋友講解，嗰一刻我真係好感動。我爸爸嚟咗香港之後都成日做義工，去學校圖書館幫手，仲會主動關心啱啱嚟香港嘅內地家庭。我覺得義工精神係一個社會嘅基石同底色——一個城市嘅溫度，唔係睇佢有幾多高樓大廈，而係睇佢點對待最需要幫助嘅人。我希望喺咁嘅城市長大，成為一個願意付出嘅人。」",
+ yueNote:"「義工」「弱勢社群」「人情味」三個詞用粵語講會加分，練順佢。"},
+
+{id:"Q8",cat:"B",en:"Why are you so short / not good at something? (stress test)",cn:"压力测试：你为什么这么矮/不擅长某事？",
+ tip:"先幽默化解，再说优点；千万别列自己的缺点清单！",
+ tipEn:"Defuse with humour first, then talk about your strengths — never list your weaknesses.",
+ tipYue:"先用幽默化解，再講優點；千祈唔好數自己嘅缺點！",
+ cnA:"哈哈，我可能还在长身体呢！每个人都有长处和短处。我也许不是最高的，但我在手钟比赛中获过奖，也善于帮助别人。我总是全力以赴，这才是最重要的。",
+ enA:"Haha, maybe I am still growing! Everyone has strengths and weaknesses. I may not be the tallest, but I won prizes in handbell and I am good at helping others. I always try my best, and that is what really counts.",
+ yue:"「哈哈，我可能仲生緊㗎！每個人都有長處同短處。我未必係最高嗰個，但我喺手鐘比賽攞過獎，又善於幫人。我一路都盡全力，呢樣先係最重要。」",
+ yueNote:"粤语小贴士：笑住答！加句「哈哈」自然化解尴尬，面试官想睇你嘅自信同幽默感。"},
+
+{id:"Q9",cat:"C",en:"If you see your classmate cheating in exam, what will you do?",cn:"看到同学考试作弊，你会怎么做？",
+ tip:"两难题：不鼓励告密，也不包庇——私下友善提醒 + 提供帮忙复习。表态（不认同作弊）→ 理由（对人不公平、他也学不到）→ 行动（私下谈、陪他复习）。",
+ tipEn:"A dilemma: no telling on him, no covering up for him — private reminder plus help with revision.",
+ tipYue:"兩難題：唔告密，都唔包庇——私下善意提一提，再陪佢一齊溫書。",
+ cnA:"我会在考后私下和他谈。作弊对其他同学不公平，他自己也学不到东西。我会鼓励他下次好好准备，我甚至可以和他一起复习。",
+ enA:"I would talk to him privately after the exam. Cheating is unfair to others and he learns nothing from it. I would encourage him to prepare well next time, and I can even revise with him.",
+ yue:"「我會考完試之後私下同佢傾。作弊對其他同學唔公平，佢自己又學唔到嘢。我會鼓勵佢下次好好準備，我甚至可以同佢一齊溫書。」"},
+
+{id:"Q10",cat:"C",en:"If your friend wants to copy your homework, what will you do?",cn:"朋友想抄你的作业，你会怎么做？",
+ tip:"拒绝抄 + 主动教，挂『帮手钟队友练和声』的例子。",
+ tipEn:"Refuse to let him copy, but teach him instead — link to helping your handbell teammates with harmony.",
+ tipYue:"唔畀佢抄，但要主動教佢——掛住『幫手鐘隊隊友練和聲』嘅例子。",
+ cnA:"我不会让他抄，因为这对他没帮助。但我会问他哪里不懂，耐心教他——就像我帮手钟队队友练和声一样。真正的朋友是帮你学会，而不是帮你抄。",
+ enA:"I would not let him copy, because it does not help him. But I would ask which part he does not understand and teach him patiently — just like I helped my handbell teammates with harmony. A true friend helps you learn, not just copy.",
+ yue:"「我唔會畀佢抄，因為咁對佢冇幫助。但我會問佢邊度唔明，耐心教佢——就好似我幫手鐘隊隊友練和聲咁。真正嘅朋友係幫你學識，唔係幫你抄。」"},
+
+{id:"Q11",cat:"C",en:"If you are a prefect and classmates do not follow you, what will you do?",cn:"你是班长但同学不听你的，怎么办？",
+ tip:"先了解原因→自己改进→耐心劝导。领导靠尊重不靠喊叫。",
+ tipEn:"Find out why, improve yourself, then persuade patiently — leading is about respect, not shouting.",
+ tipYue:"先了解原因 → 自己改進 → 耐心勸導。領導靠尊重，唔係靠嗌。",
+ cnA:"我会保持冷静，先了解原因。也许是我表达不清楚，我会改进；如果他们只是贪玩，我会友善地解释规则为什么重要。领导靠的是尊重，不是喊叫。",
+ enA:"I would stay calm and find out the reason first. Maybe my instructions were not clear, so I can improve. If they are just playing around, I would explain kindly why rules matter. Leading is about respect, not shouting.",
+ yue:"「我會保持冷靜，先了解原因。可能係我講得唔清楚，我會改進；如果佢哋只係貪玩，我會友善咁解釋點解規則重要。領導靠嘅係尊重，唔係嗌交。」"},
+
+{id:"Q12",cat:"C",en:"Do you agree 'practice makes perfect'?",cn:"你同意『熟能生巧』吗？",
+ tip:"三层例证，一层比一层有力：① 自己（粤语 + 手钟）；② 历史（欧阳修《卖油翁》：陈尧咨善射，卖油老伯能把油从铜钱孔倒进去而不湿钱，说『我亦无他，惟手熟尔』）；③ 时事/名人（科比被问为何这么强，反问『你见过凌晨四点的洛杉矶吗？』——注意是四点，别说错；香港运动员：1996 年滑浪风帆李丽珊为香港拿下第一面奥运金牌，还有游泳的何诗蓓、花剑的张家朗）。",
+ tipEn:"Three layers: yourself (Cantonese + handbells) → history (Ouyang Xiu's 'The Oil Seller': 'I have no secret, only a practised hand') → modern names (Kobe's 'Have you ever seen Los Angeles at four in the morning?', and Hong Kong's Lee Lai-shan, Siobhan Haughey, Edgar Cheung).",
+ tipYue:"三層例子：① 自己（粵語＋手鐘）；② 歷史（《賣油翁》：「我亦無他，惟手熟爾」）；③ 名人時事（科比：「你見過凌晨四點嘅洛杉磯未？」；香港運動員：李麗珊、何詩蓓、張家朗）。科比係凌晨四點，唔好講錯做三點。",
+ cnA:"我非常同意。第一，我自己的例子：我来香港时完全不懂粤语，每天坚持听和练，现在已经能听懂同学说话；我的手钟奖也是练了几百个小时换来的。第二，历史上有个故事叫《卖油翁》：陈尧咨射箭很厉害，但卖油的老伯能把油从铜钱孔里倒进去而钱不湿，他说『我亦无他，惟手熟尔』——没有别的秘诀，只是手熟罢了。第三，现代的例子：已故篮球巨星科比被问到为什么这么强，他反问：『你见过凌晨四点的洛杉矶吗？』天才也是每天最早开始训练的人。香港也有这样的运动员：滑浪风帆的李丽珊在 1996 年为香港赢得第一面奥运金牌，靠的是长年累月在风浪里练习；游泳的何诗蓓、花剑的张家朗也一样。所以我相信：熟能生巧，努力比天分更可靠。",
+ enA:"I totally agree. First, my own example: when I came to Hong Kong I could not understand Cantonese at all, but I kept listening and practising every day, and now I can understand my classmates. My handbell prizes came from hundreds of hours of practice too. Second, history gives us a story — 'The Oil Seller' by Ouyang Xiu. Chen Yaozi was a great archer, but an old oil seller could pour oil through the hole of a coin without wetting it. He said, 'I have no secret — only a practised hand.' Third, a modern example: when the late basketball star Kobe Bryant was asked why he was so good, he replied, 'Have you ever seen Los Angeles at four in the morning?' Even genius starts training first every day. Hong Kong has athletes like this too — windsurfer Lee Lai-shan won Hong Kong's first Olympic gold in 1996 through years of training in wind and waves, and swimmers like Siobhan Haughey and fencer Edgar Cheung are the same. So I believe practice really does make perfect — hard work is more reliable than talent.",
+ yue:"「我非常同意。第一，我自己嘅例子：我嚟香港嗰陣完全唔識粵語，每日堅持聽同練，而家已經聽得明同學講嘢；我嘅手鐘獎都係練咗幾百個鐘換返嚟㗎。第二，歷史上有個故事叫《賣油翁》：陳堯咨射箭好犀利，但賣油嘅老伯可以將油由銅錢窿倒落去而錢唔濕，佢話『我亦無他，惟手熟爾』——冇第二個秘訣，只係手熟咋。第三，現代嘅例子：已故籃球巨星科比畀人問佢點解咁勁，佢反問：『你見過凌晨四點嘅洛杉磯未？』天才都係每日最早開始練波嘅人。香港都有咁嘅運動員：滑浪風帆嘅李麗珊喺 1996 年為香港攞到第一面奧運金牌，靠嘅係長年累月喺風浪裡面練；游水嘅何詩蓓、花劍嘅張家朗都一樣。所以我信：熟能生巧，努力比天分更可靠。」",
+ yueNote:"粵語講「犀利」「勁」「冇第二個秘訣」幾自然，練熟呢幾句就夠。"},
+
+{id:"Q13",cat:"C",en:"Do you agree 'don't judge a book by its cover'?",cn:"你同意『不要以貌取人』吗？",
+ tip:"时事 + 个人双线。时事例子：『外卖诗人』王计兵——五十多岁的外卖骑手，默默写了 38 年诗，采访了 140 多位同行写成诗集《低处飞行》，2026 年 7 月获得第九届鲁迅文学奖（中国最重要的文学奖之一）。很多人只看到他的外卖服，看不到他心里的诗。再用自己『不会粤语的安静插班生』收尾。",
+ tipEn:"Current affairs plus personal: Wang Jibing, the 'food delivery poet', wrote for 38 years and won the 9th Lu Xun Literature Prize in July 2026 — people saw only his uniform, not the poetry inside. Then close with your own new-girl story.",
+ tipYue:"時事＋個人雙線：『外賣詩人』王計兵——送外賣送到攞魯迅文學獎，好多人只睇到佢件外賣衫，睇唔到佢心裡面嘅詩。最後接自己『唔識粵語嘅插班生』收尾。",
+ cnA:"同意。最近有一个很打动我的例子：『外卖诗人』王计兵。他是一位五十多岁的外卖骑手，看起来就是一位普通的骑手——但他默默写了三十八年诗，还采访了一百四十多位同行，把骑手的真实生活写进诗集《低处飞行》。2026 年 7 月，他凭这本诗集获得第九届鲁迅文学奖，这是中国最重要的文学奖之一。很多人以前只看到他身上的外卖服，看不到他心里的诗。所以我认为不能以貌取人：真正决定一个人的，是他心里的东西。我自己也有类似的经历：刚来香港时，我是个不会粤语的安静插班生，同学可能觉得我很内向，相处之后才发现我活泼又乐于助人。",
+ enA:"I agree. A recent example really touched me — Wang Jibing, the 'food delivery poet'. He is a delivery rider in his fifties, and he looks like an ordinary rider. But he had quietly written poems for thirty-eight years, and he interviewed more than 140 fellow riders for his collection 'Flying Low'. In July 2026 he won the 9th Lu Xun Literature Prize, one of China's most important literary awards. Many people used to see only his delivery uniform, never the poetry in his heart. So I believe we should never judge a book by its cover — what really defines a person is what is inside. I had a similar experience: when I first came to Hong Kong I was a quiet new girl who could not speak Cantonese, and some classmates may have thought I was shy. Only after spending time together did they find that I am cheerful and helpful.",
+ yue:"「同意。最近有個例子好感動我：『外賣詩人』王計兵。佢係一個五十幾歲嘅外賣騎手，睇落就係一個普通騎手——但佢默默寫咗三十八年詩，仲訪問咗一百四十幾個行家，將騎手嘅真實生活寫成詩集《低處飛行》。2026 年 7 月，佢憑呢本詩集攞到第九屆魯迅文學獎，係中國最重要嘅文學獎之一。好多人以前只睇到佢件外賣衫，睇唔到佢心裡面嘅詩。所以我認為唔可以以貌取人：真正決定一個人嘅，係佢心裡面嘅嘢。我自己都有類似經歷：啱嚟香港嗰陣，我係個唔識講粵語嘅安靜插班生，同學可能覺得我好內向，相處之後先發現我活潑又樂於助人。」",
+ yueNote:"王計兵個名用普通話講會清楚啲，如果面試官聽唔明，可以補一句：『a delivery rider who won a national poetry prize』。"},
+
+{id:"Q14",cat:"C",en:"Do you agree academic result is more important than conduct?",cn:"学业成绩比品行更重要吗？",
+ tip:"立场鲜明：品行是基础，成绩其次。父母的原话很好用——「先做善良、正直、有责任感的人，再做成绩优秀的学生」。证据链：妈妈（上海残疾人公益基金会委员、帮残疾大学生就业辅导、带我学手语、到熊爪咖啡帮残疾小伙伴卖咖啡）→ 我（图书馆管理员、卖旗、养老院探访、Serve and Lead 奖）。收尾：成绩可以靠努力提升，品行是一生的根基。",
+ tipEn:"Take a clear stance: character first, grades second. Evidence chain: mum's disability charity work → your own service (librarian, flag selling, elderly-home visits, Serve and Lead award).",
+ tipYue:"立場要清：品行係基礎，成績其次。證據鏈：媽媽（殘疾人公益、帶我學手語、熊爪咖啡）→ 我（圖書管理員、賣旗、養老院探訪、Serve and Lead 獎）。",
+ cnA:"我不完全同意。我认为品行是基础，成绩是其次。我父母也是这样教我的：他们希望我首先是一个善良、正直、有责任感的人，然后才是一个成绩优秀的学生。我的妈妈是上海残疾人公益基金会的委员，她参与帮助残疾大学生做就业辅导、找工作；她还带我去『熊爪咖啡』学手语，帮残疾小伙伴卖咖啡。在他们的影响下，我在校内做图书管理员，在校外参加公益——卖旗和到养老院探访。五年级我获得『Serve and Lead』奖项，它让我更加确认：善良和乐于助人，比分数更重要。成绩可以靠努力提升，但品行是一生的根基。",
+ enA:"I don't fully agree. I believe good character is the foundation, and grades come after. That is how my parents teach me: they want me to be a kind, honest and responsible person first, and a student with good results second. My mum is a committee member of the Shanghai Foundation for the Disabled, where she helps disabled university students with career guidance and job hunting. She also took me to 'Bear Paw Coffee' to learn sign language and help our friends with disabilities sell coffee. Inspired by them, I serve as a school librarian and join community service outside school — flag selling and visits to elderly homes. In Primary 5 I won the 'Serve and Lead' award, and it confirmed for me that being kind and helpful matters more than marks. Grades can be improved by effort, but character is the root of a whole life.",
+ yue:"「我唔完全同意。我認為品行係基礎，成績係其次。我父母都係咁教我：佢哋希望我首先係一個善良、正直、有責任感嘅人，然後先係一個成績優秀嘅學生。我媽媽係上海殘疾人公益基金會嘅委員，佢幫殘疾大學生做就業輔導、搵工；佢仲帶我去『熊爪咖啡』學手語，幫殘疾朋友賣咖啡。喺佢哋影響之下，我喺學校做圖書管理員，喺校外參加公益——賣旗同去養老院探訪。五年級我攞到『Serve and Lead』獎項，令我更加確認：善良同樂於助人，比分數更重要。成績可以靠努力提升，但品行係一生嘅根基。」",
+ yueNote:"「品行」「根基」用粵語講一樣清楚；講到媽媽嘅義工工作可以放慢少少，等面試官聽得清楚。"},
+
+{id:"Q15",cat:"D",en:"Can you recommend a book / movie / place in Hong Kong?",cn:"推荐一本书/电影/香港景点",
+ tip:"主推《牧羊少年的奇幻之旅》（真读过！）+ 串来港经历。追问就提蒋勋《中国文学之美》（香岛加分）；英文书诚实答 Wimpy Kid。若要推香港景点，可讲港大生物多样性博物馆、南丫岛、龙脊（都在 Q19 里）。",
+ tipEn:"Lead with 'The Alchemist' (a book you really read) and link it to your move to Hong Kong. For Hong Kong places, use the HKU Biodiversity Museum or Dragon's Back.",
+ tipYue:"主打《牧羊少年嘅奇幻之旅》（你真係睇過）＋串連嚟香港嘅經歷。追問就講蔣勳《中國文學之美》；要推香港景點就講港大生物多樣性博物館、南丫島、龍脊。",
+ cnA:"我推荐《牧羊少年的奇幻之旅》。它讲一个牧羊少年远行追寻梦想的故事，告诉我：当你真心渴望一件事，全世界都会来帮你。我来香港也有同感——这是一段新旅程，而我找到了宝藏：新朋友、新技能和奖项。",
+ enA:"I recommend 'The Alchemist'. It is about a shepherd boy who travels far to follow his dream. It taught me that when you really want something, the whole world helps you. I felt the same when I moved to Hong Kong — it was a new journey, and I found my treasure: new friends, new skills and prizes.",
+ yue:"「我推薦《牧羊少年嘅奇幻之旅》。佢講一個牧羊少年去好遠嘅地方追尋夢想，教我：當你真心渴望一件事，全世界都會幫你。我嚟香港都有同感——呢段新旅程，我搵到自己嘅寶藏：新朋友、新技能同獎項。」",
+ yueNote:"追问『最近仲有咩书？』→「我喺度聽蔣勳老師講《中國文學之美》，發現中文原來咁靚。」"},
+{id:"Q16",cat:"B",en:"Who is your role model? / Who do you admire most?",cn:"你的榜样是谁？",
+ tip:"答妈妈：带来香港 + 坚强温柔 + 勤奋好学 + 爱心义工（可接 Q18 的细节），回扣自己的进步。",
+ tipEn:"Answer with your mum — she brought you to Hong Kong, and she is strong, gentle, and a caring volunteer; link it back to your own progress.",
+ tipYue:"答媽媽：帶你嚟香港＋堅強溫柔＋勤力好學＋愛心義工（可以接 Q18 嘅細節），最後回扣自己嘅進步。",
+ cnA:"我的妈妈是我的榜样。她带我来香港，在我面对全新环境时一直支持我。她坚强又温柔，而且很好学——她一直在学新技能，还常常做义工帮助有需要的人。因为有她，我才敢面对挑战，一年里进步这么大。",
+ enA:"My mum is my role model. She brought me to Hong Kong and supported me when everything was new and difficult. She is strong and gentle, and she loves learning — she keeps picking up new skills and often volunteers to help people in need. Because of her, I dared to face challenges and improved so much in one year.",
+ yue:"「我媽媽係我嘅榜樣。佢帶我嚟香港，喺我面對全新環境嘅時候一直支持我。佢堅強又溫柔，又好好學——佢成日學新技能，仲經常做義工幫有需要嘅人。因為有佢，我先敢面對挑戰，一年入面進步咁大。」"},
+
+{id:"Q17",cat:"D",en:"What are the benefits of extra-curricular activities?",cn:"参加课外活动有什么好处？",
+ tip:"团队 + 时间管理 + 责任感 + 领导力。核心金句（新加）：『一个团队能不能演奏出优美和谐的音乐，其实是由队里最弱的那个队员决定的，所以我们要帮助对方一起成长。』这句把 PEER LEADERSHIP 讲到最透。",
+ tipEn:"Teamwork, time management, responsibility, leadership — with the key line: 'whether a team can play beautiful, harmonious music depends on its weakest member, so we help each other grow.'",
+ tipYue:"團隊＋時間管理＋責任感＋領導力。金句：「一隊人演奏得靚唔靚，其實係由最弱嗰個隊員決定，所以我們要幫對方一齊成長。」",
+ cnA:"课外活动培养团队精神、时间管理和责任感。手钟教会我倾听与配合——一支队伍能不能演奏出优美和谐的音乐，其实是由队伍里最弱的那个队员决定的：只要有一个人音不准，整首曲子就不好听。所以我们要互相帮助，一起成长。老师还安排我帮进度较慢的队员练和声，我学会了『通过帮助别人来领导团队』。图书管理员则教会我服务他人。",
+ enA:"They build teamwork, time management and responsibility. Handbell taught me to listen and cooperate — whether a team can play beautiful, harmonious music actually depends on the weakest member of the team: if even one person's note is off, the whole piece sounds wrong. So we must help each other and grow together. My teacher even arranged for me to help slower members practise their harmony, and I learned to lead by helping others. Being a librarian taught me to serve.",
+ yue:"「課外活動培養團隊精神、時間管理同責任感。手鐘教我聆聽同配合——一隊人演奏得靚唔靚、和唔和諧，其實係由最弱嗰個隊員決定：只要有一個人音唔準，成首曲就唔好聽。所以我哋要互相幫助，一齊成長。老師仲安排我幫進度慢啲嘅隊員練和聲，我學識咗『透過幫人去領導團隊』。圖書管理員就教識我服務。」"},
+
+{id:"Q18",cat:"B",en:"How would you describe your father / mother / sibling?",cn:"形容你的父母/兄弟姐妹",
+ tip:"先妈妈：温柔、勤奋、有责任感、爱学习（学 AI 编程、为公司做 AI 工具）、有爱心（上海残疾人公益基金会委员、帮残疾大学生就业辅导、带我去熊爪咖啡学手语卖咖啡）；再爸爸：有爱心、幽默、鼓励我探索世界、『不要怕难为情，想要的目标就大胆争取』、来港后做学校义工、在图书馆帮忙、关心新来港的内地家庭、主动学粤语。关键：父母有爱心 + 我也跟着做，这条因果链最有力。",
+ tipEn:"Mum first (gentle, diligent, loves learning AI, caring charity work), then Dad (caring, humorous, encourages you to explore, volunteers at school, helps new Mainland families, learns Cantonese). Show that their kindness shaped yours.",
+ tipYue:"先講媽媽（溫柔、勤力、好學、做 AI 工具、愛心義工、帶我去熊爪咖啡學手語），再講爸爸（有愛心、幽默、鼓勵我探索、做學校義工、幫新來港家庭、學粵語）。重點：父母有愛心，我亦跟着做。",
+ cnA:"我的妈妈温柔、勤奋又有责任感。她很喜欢学习，一直在学新技能——最近她在学用 AI 写程序（vibe coding），还为公司做了不少 AI 工具。她工作非常认真负责。更重要的是，她是一个很有爱心的人：我们在上海住的时候，她常常做义工，帮助残疾的学生和人士。她是上海残疾人公益基金会的委员，参与帮助残疾大学生做就业辅导、找工作。她还带我去学手语，陪我到残疾小伙伴经营的『熊爪咖啡』打工、卖咖啡。我的爸爸很有爱心，也很幽默。他鼓励我去探索新事物、去看世界，做个积极乐观的人，还常说：『不要怕难为情，想要的目标就大胆去争取。』来香港之后，他常做学校义工，和我一起去图书馆帮忙，也会主动关心新来港的内地家庭，帮他们融入这里的生活；他自己还非常主动地学习粤语、用粤语和人沟通。他们都很支持我的兴趣——甚至让我在家养了两只花枝鼠！",
+ enA:"My mum is gentle, hard-working and very responsible. She loves learning and keeps picking up new skills — recently she has been learning to build things with AI (vibe coding), and she has made quite a lot of AI tools for her company. She is also a very caring person: when we lived in Shanghai she often volunteered to help students and people with disabilities. She is a committee member of the Shanghai Foundation for the Disabled, where she helps disabled university students with careers and job hunting. She even took me to learn sign language and to work part-time at 'Bear Paw Coffee', a café run by our friends with disabilities, where I helped sell coffee. My dad is caring and humorous. He encourages me to explore new things and see the world, to stay positive, and he always tells me, 'Don't be shy — go after the goal you want.' After we came to Hong Kong, he often volunteers at my school, helps out in the library with me, and reaches out to newly arrived Mainland families to help them settle into life here. He is also very active in learning Cantonese so he can talk with people in Cantonese. Both of them support my hobbies — they even let me keep two fancy rats at home!",
+ yue:"「我媽媽溫柔、勤力又有責任感。佢好鍾意學習，成日學新技能——最近佢學緊用 AI 寫程式（vibe coding），仲幫公司做咗唔少 AI 工具。佢做嘢好認真負責。更重要係，佢係一個好有愛心嘅人：我哋喺上海住嗰陣，佢成日做義工，幫殘疾嘅學生同人士。佢係上海殘疾人公益基金會嘅委員，幫殘疾大學生做就業輔導、搵工。佢仲帶我去學手語，陪我去殘疾朋友開嘅『熊爪咖啡』打工、賣咖啡。我爸爸好有愛心，又好幽默。佢鼓勵我去探索新事物、去睇世界，做人積極樂觀，仲成日同我講：『唔好怕醜，想要嘅目標就大膽去爭取。』嚟咗香港之後，佢成日做學校義工，同我一齊去圖書館幫手，又會主動關心啱啱嚟香港嘅內地家庭，幫佢哋融入呢度嘅生活；佢自己都好主動學粵語、用粵語同人傾偈。佢哋兩個都好支持我嘅興趣——甚至畀我喺屋企養咗兩隻花枝鼠！」",
+ yueNote:"「熊爪咖啡」講做「熊爪咖啡（Bear Paw Coffee）」，補一句係「殘疾朋友開嘅咖啡店」，面試官即刻明白。"},
+
+{id:"Q19",cat:"B",en:"What do you usually do with your family?",cn:"你通常和家人做什么？",
+ tip:"把家庭生活讲成『探索香港』：户外行山看海（南丫岛、长洲岛、城门水塘、龙脊、麦理浩径破边洲，下一个目的地：塔门岛）＋ 全家爱逛博物馆（妈妈最爱）＋ 我请朋友来家里看花枝鼠、一起做游戏。收尾一句温馨细节（全家帮忙清理笼子）。",
+ tipEn:"Frame family time as exploring Hong Kong: hiking and the outlying islands, museums (mum's favourite), and inviting friends home to meet your rats — end with a warm detail.",
+ tipYue:"將家庭生活講成『探索香港』：行山睇海（南丫島、長洲、城門水塘、龍脊、破邊洲，下一站塔門島）＋全家鍾意博物館（媽媽最愛）＋請朋友嚟屋企睇花枝鼠。",
+ cnA:"周末我们很喜欢去户外，一起探索香港：去行山、看海，认识香港的自然美景。我们去过南丫岛、长洲岛、城门水塘、龙脊，也走过麦理浩径的破边洲。我们全家都很喜欢博物馆，尤其是妈妈——我们一起去看展览，边看边聊。我们的下一个目的地是塔门岛！有时候我也会约朋友来家里玩，请他们看看我养的两只花枝鼠，一起做游戏、聊天；有时全家还会一起帮我清理笼子、喂食。一起照顾小宠物、一起看世界，我觉得又温暖又开心。",
+ enA:"At weekends we love going outdoors and exploring Hong Kong together — hiking, seeing the sea and discovering Hong Kong's natural beauty. We have been to Lamma Island, Cheung Chau, Shing Mun Reservoir and Dragon's Back, and we have walked to Po Pin Chau on the MacLehose Trail. Our whole family loves museums, especially my mum — we visit exhibitions and talk about what we see. Our next destination is Tap Mun (Grass Island)! Sometimes I also invite friends home to meet my two fancy rats, play games and chat. And sometimes the whole family helps me clean the cage and feed them. Taking care of our little pets and exploring the world together — that is warm and happy for me.",
+ yue:"「週末我哋好鍾意去戶外，一齊探索香港：行山、睇海，認識香港嘅自然美景。我哋去過南丫島、長洲、城門水塘、龍脊，仲行過麥理浩徑嘅破邊洲。我哋全家都好鍾意博物館，尤其係媽媽——我哋會一齊睇展覽，邊睇邊傾。我哋下一個目的地係塔門島！有時我都會約朋友嚟屋企玩，請佢哋睇下我養嘅兩隻花枝鼠，一齊玩遊戲、傾偈；有時全家會幫手一齊清理籠、餵佢哋食嘢。一齊照顧小寵物、一齊睇世界，我覺得又溫暖又開心。」",
+ yueNote:"島名地名用粵語講最好：「南丫島」「長洲」「城門水塘」「龍脊」「破邊洲」「塔門島」，事先讀順幾次。"},
+
+{id:"Q20",cat:"B",en:"What fruit / food / animal would you use to describe yourself?",cn:"用什么水果/食物/动物形容自己？",
+ tip:"小狗（活泼忠诚善良）+ 真实养花枝鼠收尾。",
+ tipEn:"A little dog (cheerful, loyal, kind) — then close with your real fancy rats.",
+ tipYue:"小狗（活潑、忠誠、善良）＋用真實養花枝鼠嘅經歷收尾。",
+ cnA:"我会说小狗——活泼、忠诚、善良，喜欢和人在一起。我喜欢交朋友、乐于助人。我在家还养了两只可爱的花枝鼠，它们聪明又温顺，我每天都好好照顾它们。",
+ enA:"I would say a little dog — cheerful, loyal and kind, and it loves being with people. I love making friends and helping others. And at home, I keep two lovely fancy rats — they are smart and gentle, and I take good care of them every day.",
+ yue:"「我會揀小狗——活潑、忠誠、善良，鍾意同人喺埋一齊。我鍾意交朋友、樂於助人。我屋企仲養咗兩隻可愛嘅花枝鼠，佢哋聰明又溫馴，我每日都好好照顧佢哋。」"},
+
+{id:"Q21",cat:"C",en:"Do you agree that getting into a good school means having a future?",cn:"进好学校就意味着有未来吗？",
+ tip:"辩证：好学校是起点，未来靠努力与品行。（可用观点题思路①：先承认『好学校很重要』，再讲它不是全部。）",
+ tipEn:"Dialectical answer: a good school is a starting point; the future depends on effort and character.",
+ tipYue:"辯證答：好學校係起點，未來靠努力同品行。先承認好學校重要，再講佢唔係全部。",
+ cnA:"好学校是更好的起点、提供更多资源，但那只是开始。未来取决于自己的努力和品行。就算进了名校，不努力也会落后。",
+ enA:"A good school gives us a better start and more resources, but it is only the beginning. Our future depends on our own effort and character. Even in a famous school, if you do not work hard, you will fall behind.",
+ yue:"「好學校係更好嘅起點，提供多啲資源，但嗰個只係開始。未來取決於自己嘅努力同品行。就算入咗名校，唔努力都會落後。」"},
+
+{id:"Q22",cat:"D",en:"Do you think information technology can help students learn?",cn:"信息技术能帮助学生学习吗？",
+ tip:"两个自己的例子，第二个是新加：① 上网看视频自学养花枝鼠；② 上网找视频学会分数计算和比较大小的『交叉十字法』（交叉相乘），比较分数快了很多。再加一句自律提醒。",
+ tipEn:"Two of your own examples: self-learning how to keep pet rats online, and learning the 'cross-multiplication' trick for comparing fractions from an online video. Add a note on self-discipline.",
+ tipYue:"兩個自己嘅例子：① 上網自學養花枝鼠；② 網上學識分數『交叉十字法』（交叉相乘）。最後補一句要自律。",
+ cnA:"可以。我自己就有两个例子。第一，我养花枝鼠时，就是上网看视频、查资料，学会怎么照顾它们——科技帮我自学新事物。第二，我数学想再进步，就上网找视频，学会了分数计算和比较大小的『交叉十字法』（交叉相乘），现在比较分数快了很多。当然，科技也要自律使用，不能沉迷游戏。",
+ enA:"Yes. I have two examples of my own. First, when I got my pet rats, I searched for videos and information online to learn how to care for them — technology helped me teach myself new things. Second, I wanted to do better in maths, so I looked for videos online and learned the 'cross-multiplication' method for calculating and comparing fractions, which makes me much faster now. Of course, we must use technology with self-discipline and not get addicted to games.",
+ yue:"「可以。我自己就有兩個例子。第一，我養花枝鼠嗰陣，就係上網睇視頻、查資料，學識點照顧佢哋——科技幫我自學新事物。第二，我想數學再好啲，就上網搵視頻，學識分數計算同比較大小嘅『交叉十字法』（交叉相乘），而家比分數快咗好多。當然，用科技要自律，唔好沉迷遊戲。」",
+ yueNote:"「交叉相乘」講做 cross-multiplication，面試官會覺得你連數學方法都識用英文講，加分。"},
+
+{id:"Q23",cat:"D",en:"Do you think students should attend tutorial lessons after school?",cn:"学生放学后应该去补习吗？",
+ tip:"25→8 的自主进步数据在这里最有说服力！",
+ tipEn:"Your 25th-to-8th progress by self-study is the strongest evidence here.",
+ tipYue:"25 名→第 8 名嘅自主進步數據，喺呢題最有說服力！",
+ cnA:"因人而异。如果上课专心、课后认真复习，未必需要补习。我靠上课专心和自主复习，从年级第 25 名进步到第 8 名。自主学习才是更重要的能力。",
+ enA:"It depends. If we listen carefully in class and revise well, we may not need tutorials. I improved from 25th to 8th in my grade by paying attention in class and reviewing by myself. Self-learning is a more important skill.",
+ yue:"「因人而異。如果上課專心、課後認真複習，未必需要補習。我靠上課專心同自主複習，由年級第 25 名進步到第 8 名。自主學習先係更重要嘅能力。」"},
+
+{id:"Q24",cat:"D",en:"Should F.1 students be allowed to have lunch out of school?",cn:"中一学生应该被允许出校吃午饭吗？",
+ tip:"安全 + 与同学相处两个理由。",
+ tipEn:"Two reasons: safety, and lunchtime as a chance to make friends.",
+ tipYue:"兩個理由：安全 ＋ 午飯時間係同同學傾偈、識朋友嘅好機會。",
+ cnA:"我觉得中一学生还小，学校附近交通繁忙，在校吃午饭更安全。而且午饭时间是和同学聊天、交新朋友的好机会。",
+ enA:"I think F.1 students are still young and the traffic near school can be busy, so having lunch at school is safer. Also, lunch time is a good chance to chat with classmates and make new friends.",
+ yue:"「我覺得中一學生仲細，學校附近交通繁忙，喺學校食飯更安全。而且午飯時間係同同學傾偈、交新朋友嘅好機會。」"},
+
+{id:"Q26",cat:"D",en:"Do you think students should bring mobile phones to school?",cn:"学生应该带手机回学校吗？",
+ tip:"建议不带 + 替代方案（学校办公室电话）。",
+ tipEn:"Suggest leaving phones at home, with an alternative — the school office phone.",
+ tipYue:"建議唔帶手機，畀個替代辦法：用學校辦公室電話。",
+ cnA:"我觉得学生不应该带手机，因为会令我们上课分心。如果家长需要联系，可以用学校办公室电话。课堂专心更重要。",
+ enA:"I think students should not bring phones, because they distract us from learning. If parents need to contact us, we can use the school office phone. Focus in class is more important.",
+ yue:"「我覺得學生唔應該帶手機，因為會令我哋上課分心。如果家長要聯絡，可以用學校辦公室電話。課堂專心更重要。」"},
+
+{id:"Q27",cat:"D",en:"How many hours do you spend online every day?",cn:"你每天花多少时间上网？",
+ tip:"改成『放松 + 学习』两条线：放松＝看关注博主的视频；学习＝用多邻国 App 学国际象棋（看得懂同学下棋，也能慢慢参与，目标是参加学校棋艺比赛）、用画图软件作画、睡前听新闻。最后强调不沉迷（手钟、花枝鼠、阅读）。",
+ tipEn:"Two lines: relaxing (watching creators you follow) and learning (a chess app so you can join classmates, drawing, news before bed). Then stress you are not addicted.",
+ tipYue:"兩條線：放鬆（睇關注嘅博主）＋學習（用 App 學國際象棋、畫圖、睡前聽新聞），最後講唔會沉迷。",
+ cnA:"大约半小时到一小时。一部分用来放松——看看我关注的博主的视频；一部分用来学新东西：我用学习 App（多邻国）学国际象棋，这样我就看得懂同学们下课下棋，也可以慢慢参与进去，我的目标是能参加学校的棋艺比赛；有时我还会用画图软件作画，如果有时间，睡前会听一听新闻。我不会沉迷，因为我还要练手钟、照顾花枝鼠，也要留时间阅读。",
+ enA:"About half an hour to one hour. Part of it is for relaxing — I watch videos from creators I follow. Part of it is for learning: I use a learning app (Duolingo) to learn chess, so that I can understand my classmates when they play after class and gradually join in — my goal is to take part in the school chess competition. Sometimes I draw with a drawing app, and if I have time I listen to the news before bed. I am not addicted, because I still practise handbells, take care of my two rats, and save time for reading.",
+ yue:"「大約半個鐘到一個鐘。一部分用嚟放鬆——睇下我關注嘅博主嘅視頻；一部分用嚟學新嘢：我用學習 App（多鄰國）學國際象棋，咁我就睇得明同學放學下棋，都可以慢慢參與，我嘅目標係參加學校嘅棋藝比賽；有時我仲會用畫圖軟件畫畫，如果有時間，睡前會聽下新聞。我唔會沉迷，因為我要練手鐘、照顧花枝鼠，仲要留時間睇書。」",
+ yueNote:"「棋藝比賽」可以講「象棋比賽」，睇面試官反應；唔肯定就講 chess competition。"},
+
+{id:"Q28",cat:"D",en:"How would you spend $10,000 most effectively?",cn:"你会如何最有效地花一万元？",
+ tip:"理财观 + 爱心（动物收容）。",
+ tipEn:"Money sense plus compassion — animal shelters.",
+ tipYue:"理財觀 ＋ 愛心（動物收容機構）。",
+ cnA:"我会存一半作学习用途，比如买书、上课；另一部分捐给动物收容机构，因为我喜欢动物，希望流浪猫狗能找到家。帮助别人是最好的花钱方式。",
+ enA:"I would save half for my studies, like books and courses. I would use part to help animal shelters, because I love animals and hope stray cats and dogs can find homes. Helping others is the best way to spend money.",
+ yue:"「我會儲一半作學習用途，例如買書、上堂；另一部分捐畀動物收容機構，因為我鍾意動物，希望流浪貓狗可以搵到屋企。幫助別人係最好嘅使錢方法。」"},
+
+{id:"Q29",cat:"D",en:"Is Facebook / Instagram a good way to communicate?",cn:"社交软件是沟通的好方式吗？",
+ tip:"肯定 + 隐私 + 不沉迷，三面俱全。",
+ tipEn:"Three angles: it is useful, protect your privacy, and do not overuse it.",
+ tipYue:"三個角度：有用 ＋ 保護私隱 ＋ 唔好花太多時間。",
+ cnA:"是的，它帮助我们和朋友保持联系。但必须保护隐私、不与陌生人聊天、不要花太多时间。真实的面对面友谊更重要。",
+ enA:"Yes, it helps us keep in touch with friends. But we must protect our privacy, never chat with strangers, and not spend too much time on it. Real face-to-face friendship is more important.",
+ yue:"「係㗎，佢幫我哋同朋友保持聯絡。但要保護私隱、唔好同陌生人傾偈、唔好花太多時間。真實嘅面對面友誼更重要。」"},
+
+{id:"Q30",cat:"D",en:"Some teenagers are fascinated with brand labels. Your opinion?",cn:"有些青少年痴迷名牌，你怎么看？",
+ tip:"用高级词汇 pursue brand：『我不认为青少年应该盲目 pursue brand labels』。立场：不盲目追求 + 精力放在内在修养，收尾一句金句。",
+ tipEn:"Use the phrase 'pursue brand labels'. Do not pursue them blindly — put your energy into character instead.",
+ tipYue:"用高級詞 pursue brand labels：唔好盲目追求名牌，精力放在內在修養，收尾講一句金句。",
+ cnA:"我认为青少年不应该盲目追求名牌。学生衣着干净整洁就够了。我们应该把精力放在学习和内在修养上，而不是名牌的标签。真正的品味来自修养，不是来自价格。",
+ enA:"I don't think teenagers should pursue brand labels blindly. Clean and tidy clothes are enough for students. We should spend our energy on study and on building our character, not on brand names. Real taste comes from who we are, not from the price tag.",
+ yue:"「我認為青少年唔應該盲目追求名牌。學生衣着乾淨企理就够㗎啦。我哋應該將精力放在學習同內在修養上，而唔係名牌嘅標籤。真正嘅品味嚟自修養，唔係嚟自價錢。」",
+ yueNote:"英文講「pursue brand labels」，粵語講「追求名牌」，兩邊都唔使怕，講得淡定就得。"},
+
+{id:"Q31",cat:"C",en:"Are teachers who improve students' exam results good teachers?",cn:"能提高学生成绩的老师就是好老师吗？",
+ tip:"知识+做人，用『帮我适应香港的老师』收尾最动人。",
+ tipEn:"Knowledge plus character — close with the teachers who helped you settle into Hong Kong.",
+ tipYue:"教知識＋教做人，最後用『幫我適應香港嘅老師』收尾，最動人。",
+ cnA:"不完全是。好老师不仅教知识，还教我们做人。帮我适应香港生活的老师关心的是我这个人，不只是分数。那样的老师才是真正的好老师。",
+ enA:"Not exactly. A good teacher not only teaches knowledge but also teaches us how to be good people. The teachers who helped me adapt to life in Hong Kong cared about me, not just my marks. That is a truly good teacher.",
+ yue:"「唔完全係。好老師唔單止教知識，仲教我哋做人。幫我適應香港生活嘅老師關心嘅係我個人，唔只係分數。嗰啲先係真正嘅好老師。」"},
+
+{id:"Q32",cat:"D",en:"What is your opinion on waste disposal / enlarging landfills in Hong Kong?",cn:"关于香港的废物处理/扩建堆填区，你怎么看？",
+ tip:"用观点题思路③：短期措施（扩建）的合理性 + 长期行为（源头减废）的影响，落到个人和学校的具体行动。",
+ tipEn:"Use strategy ③: why the short-term measure is understandable, and why long-term behaviour change matters more — with concrete personal and school actions.",
+ tipYue:"用思路③：講短期措施點解可以理解，但長期要源頭減廢，落到自己同學校嘅具體行動。",
+ cnA:"扩建堆填区只是短期办法，可以理解，但不是长久之计。我们应该从源头减废——自备水瓶和购物袋，做好回收，少买不必要的东西。学校和家庭都可以做：学校推动惜食、减少厨余；家里做好分类回收。日常小习惯能带来大改变。",
+ enA:"Enlarging landfills is only a short-term fix. It is understandable, but it is not a long-term solution. We should reduce waste at the source — bring our own water bottles and bags, recycle properly and buy less of what we do not need. Schools and families can both help: schools can promote saving food and cutting food waste, and at home we can sort and recycle. Small daily habits make a big difference.",
+ yue:"「擴建堆填區只係短期辦法，可以理解，但唔係長遠之計。我哋應該從源頭減廢——自備水樽同購物袋，做好回收，少買唔需要嘅嘢。學校同屋企都可以做：學校推動惜食、減少廚餘；屋企做好分類回收。日常小習慣可以帶嚟大改變。」"},
+
+{id:"Q33",cat:"D",en:"How can we reduce carbon dioxide emissions?",cn:"我们如何减少二氧化碳排放？",
+ tip:"按『个人 → 家庭 → 学校』三个维度答，每个维度给具体做法，最后一句收尾金句：一个人做很小，全校、全城一起做就是大力量。",
+ tipEn:"Answer in three dimensions — personally, at home, at school — each with concrete actions, then close with a strong line.",
+ tipYue:"按『個人 → 家庭 → 學校』三層答，每層講具體做法，最後收一句：一個人做細，全校全城一齊做就係大力量。",
+ cnA:"可以从三个层面一起做。个人层面：我出门尽量搭公共交通，自己带水杯，离开房间随手关灯，少用一次性餐具。家庭层面：我们家里会做垃圾分类和回收，夏天冷气调到 25.5 度，买东西自带购物袋，也尽量少买不需要的东西。学校层面：可以组织回收活动、多种植物、办环保主题的比赛，提醒同学关灯关风扇；学校还可以在饭堂推动『惜食』，减少厨余。一个人做很小，但全校、全城一起做就是大力量。",
+ enA:"We can work on three levels together. Personally, I take public transport whenever I can, bring my own water bottle, switch off lights when I leave a room and avoid single-use tableware. At home, we sort and recycle our waste, set the air-conditioner at 25.5 degrees, bring our own shopping bags and try to buy less of what we do not need. At school, we can organise recycling drives, plant more greenery and run green-themed competitions, remind classmates to switch off lights and fans, and promote saving food in the canteen to cut food waste. One person's effort is small, but when a whole school and a whole city do it together, it becomes a big force.",
+ yue:"「可以分三層一齊做。個人方面：我出門盡量搭公共交通，自己帶水樽，離開房間隨手熄燈，少用即棄餐具。屋企方面：我哋會做垃圾分類同回收，夏天冷氣調到 25.5 度，買嘢自備購物袋，亦盡量少買唔需要嘅嘢。學校方面：可以搞回收活動、多種植物、辦環保主題比賽，提醒同學熄燈熄風扇；學校仲可以在飯堂推動『惜食』，減少廚余。一個人做係好細，但全校、全城一齊做就係大力量。」"},
+
+{id:"Q34",cat:"D",en:"Describe a recent news / social issue and your opinion.",cn:"描述你最近看过的一则新闻/社会问题",
+ tip:"用『新闻内容 + 观点 + 自己的思考』三段式答，最清楚：① 新闻讲什么（具体机构、具体事）；② 我的观点（问题的根源是什么）；③ 我的思考与行动（可以怎么做 + 我自己会做什么）。⚠️ 考前找一个具体报道（哪个机构、什么事），真实感拉满！",
+ tipEn:"Use a three-part structure: what the news says (a specific story) → your view (the root cause) → your own thinking and action. Find one concrete report before the interview.",
+ tipYue:"用三段式答：① 新聞講乜（具體機構同事件）→ ② 我嘅睇法（問題根源）→ ③ 我嘅思考同行動。考前一星期搵一單具體報道，真實感即刻拉滿。",
+ cnA:"【新闻】最近我读到一则新闻：香港的动物收容所长期爆满，很多流浪猫狗等不到一个家，有些义工要自己掏钱照顾它们。【观点】我认为问题的根源是『购买多、领养少』——很多人想养宠物就去买，却没有想到领养，也没有认真想过要照顾一个生命十几年。【我的思考】所以我觉得可以从两方面做：一是持续推广『领养代替购买』，二是让尊重生命的宠物教育进入校园。我自己也打算周末去动物收容所做义工，帮忙清洁、带狗狗散步。动物是我们的朋友，值得被善待。",
+ enA:"[The news] Recently I read that animal shelters in Hong Kong are full all year round, and many stray cats and dogs never find a home — some volunteers even pay out of their own pockets to look after them. [My view] I think the root cause is that more people buy pets than adopt: many people buy a pet without considering adoption, or thinking seriously about caring for a life for over ten years. [My thinking] So we can work on two things: keep promoting 'adopt, don't shop', and bring education about respecting animals into schools. I am also planning to volunteer at an animal shelter at weekends — helping to clean and walk the dogs. Animals are our friends and they deserve our care.",
+ yue:"「【新聞】最近我讀到一則新聞：香港嘅動物收容所長期爆滿，好多流浪貓狗等唔到一個家，有啲義工仲要自己掏錢照顧佢哋。【我嘅睇法】我認為問題嘅根源係『買多過領養』——好多人想養寵物就去買，冇諗過領養，又冇認真諗過要照顧一個生命十幾年。【我嘅思考】所以我覺得可以兩方面做：一是繼續推廣『領養代替購買』，二是將尊重生命嘅寵物教育帶入校園。我自己都打算週末去動物收容所做義工，幫手清潔、帶狗散步。動物係我哋嘅朋友，值得被善待。」",
+ yueNote:"講三段式之前可以講一句：「我用三個部分答：新聞、我嘅睇法、我嘅思考。」面試官會覺得你好有條理。"},
+
+{id:"Q35",cat:"D",en:"What is your opinion on drug testing in school?",cn:"你对校园验毒有什么看法？",
+ tip:"支持 + 教育为先 + 保护隐私。（思路②：明确表态 + 两个理由 + 一个提醒。）",
+ tipEn:"Support it, put education first, and protect students' privacy — a clear stance with reasons.",
+ tipYue:"支持 ＋ 教育為先 ＋ 保護私隱（表態清楚，再講理由）。",
+ cnA:"我支持，因为它让学生远离毒品、让校园更安全。但学校也应加强教育，让学生明白毒品的危害，并谨慎处理以保护学生隐私。",
+ enA:"I support it, because it keeps students away from drugs and makes school safer. But schools should also teach students why drugs are harmful, and handle it with care to protect students' privacy.",
+ yue:"「我支持，因為佢令學生遠離毒品、令校園更安全。但學校都應該加強教育，等學生明白毒品嘅害處，並謹慎處理以保護學生私隱。」"},
+
+{id:"Q36",cat:"D",en:"If you had to abandon one daily tool, what would it be?",cn:"如果必须放弃生活中的一样日常工具？",
+ tip:"选游戏机——影响最小，还能顺便展示充实的生活。",
+ tipEn:"Give up the game console — the smallest loss, and it shows how full your life already is.",
+ tipYue:"放棄遊戲機——影響最細，順便展示你生活好充實。",
+ cnA:"我会放弃游戏机。我偶尔玩游戏，但没有它，我还可以看书、练手钟、照顾花枝鼠，生活依然充实快乐。",
+ enA:"I would give up the game console. I enjoy games sometimes, but without it I can still read books, play handbells and take care of my rats. My life would still be full and happy.",
+ yue:"「我會放棄遊戲機。我間中都會玩下遊戲，但冇咗佢，我仲可以睇書、練手鐘、照顧花枝鼠，生活依然充實快樂。」"},
+
+{id:"Q37",cat:"E",en:"What would you like to ask at last?",cn:"最后你有什么想问的吗？",
+ tip:"只问一个，问服务/音乐团队，展示热情；别问官网能查到的。",
+ tipEn:"Ask one question about service or music teams — never ask something the school website already answers.",
+ tipYue:"只問一個，問服務團隊或者音樂團隊，展示熱情；唔好問官網查得到嘅嘢。",
+ cnA:"请问中一有哪些服务团队或音乐团队可以参加？我曾是图书管理员和手钟队成员，非常希望在贵校继续服务和演奏。",
+ enA:"May I ask what service teams or music teams I can join in F.1? I was a librarian and a handbell team member, and I really hope to keep serving and playing music in your school.",
+ yue:"「可唔可以問下，中一有咩服務團隊或者音樂團隊可以參加？我曾經係圖書管理員同手鐘隊成員，好希望在貴校繼續服務同演奏。」"},
+
+{id:"B1",cat:"F",en:"Please introduce yourself. (必考第一题！)",cn:"请自我介绍（60 秒版）",
+ tip:"全手册最重要一题！中文、英文、粤语三个版本都要练到脱口而出。若想把家庭也带进来（这句可加在最后）：『My dad volunteers at my school library and helps newly arrived Mainland families settle in.』——一句话把『有爱心的家庭』交代完，不拖长主要答案。",
+ tipEn:"The most important question of all — practise all three languages until they are automatic. Optional extra line at the end: 'My dad volunteers at my school library and helps newly arrived Mainland families settle in.'",
+ tipYue:"全份筆記最重要嘅一題，中英粵都要練到一開口就講得出。想加家庭可以喺最後補一句：『我爸爸喺學校圖書館做義工，仲幫啱嚟香港嘅內地家庭融入。』",
+ cnA:"老师早晨，我是 XXX，就读圣三一堂小学。我去年从内地来港，起初听不懂粤语，但靠努力从年级第 25 名进步到第 8 名。我是学校图书管理员，获得过『Serve and Lead』奖项，也是手钟队成员，拿过香港校际赛二等奖。我还养了两只花枝鼠，饲养方法全是自学的。我性格开朗、热爱学习新事物。希望在贵校学习。谢谢！",
+ enA:"Good morning, I am XXX. I study at Holy Trinity Church Primary School. I came to Hong Kong from the Mainland last year. At first I could not understand Cantonese, but I worked hard and improved from 25th to 8th in my grade. I am a school librarian and I won the 'Serve and Lead' award. I play in the school handbell team — we won second prize in the Hong Kong inter-school competition. I also keep two fancy rats and learned to care for them all by myself. I am cheerful and I love learning new things. I hope to study in your school. Thank you!",
+ yue:"「各位老師早晨，我係 XXX，喺聖三一堂小學讀書。我上年由內地嚟香港，起初聽唔明粵語，但靠努力由年級第 25 名進步到第 8 名。我係學校圖書管理員，攞過『Serve and Lead』獎項，又係手鐘隊成員，攞過香港校際賽二等獎。我仲養咗兩隻花枝鼠，飼養方法全部係自學㗎。我性格開朗、鍾意學新嘢。唔該晒老師！」",
+ yueNote:"粤语自我介绍允许慢、允许简单，重点是『敢开口』+ 微笑。"},
+
+{id:"B2",cat:"F",en:"Why did your family come to Hong Kong?",cn:"你们为什么来香港？",
+ tip:"两层原因：① 妈妈工作调动；② 更主要是香港的『人文关怀』吸引了我们全家（来旅游时去过港大生物多样性博物馆，看到大学生自愿做讲解老师，很耐心地为小朋友讲解；这里有很多义工团体；爸爸也常做义工——来港后在学校做义工、和我一起去图书馆帮忙、关心新来港的内地家庭、帮他们融入，还主动学粤语）。收尾：一个愿意照顾别人的城市，才适合孩子长大。",
+ tipEn:"Two reasons: mum's job moved here, and — more importantly — Hong Kong's human touch attracted the whole family (the HKU museum student guides, the strong volunteering culture, dad volunteering at school and helping new Mainland families).",
+ tipYue:"兩層原因：① 媽媽工作調動；② 更主要係香港嘅人文關懷吸引全家（港大博物館嘅學生義工講解、好多義工團體、爸爸做學校義工幫新來港家庭）。收尾：一個願意照顧人嘅城市，先適合小朋友長大。",
+ cnA:"一方面是因为妈妈工作调动；但更主要的原因，是香港的人文关怀吸引了我们全家。我们之前来香港旅游，去过港大生物多样性博物馆，看到大学的学生自愿做讲解老师，很耐心地为我们小朋友讲解，我们全家都很感动。这里有很多义工团体，我的爸爸也经常做义工——来港后他在学校做义工，和我一起去图书馆帮忙，还主动关心新来港的内地家庭，帮他们融入这里的生活，他自己也很主动地学习粤语、用粤语和人沟通。我们觉得，一个愿意照顾别人的城市，才适合孩子长大。父母希望我在这里接受良好的教育，也在这里学会做一个善良、有担当的人。香港很好，我已经交了很多朋友。",
+ enA:"One reason is that my mum's job moved here. But the bigger reason is that Hong Kong's human touch attracted our whole family. On an earlier visit we went to the HKU Biodiversity Museum, where university students volunteered as guides and patiently explained things to us children — our whole family was moved. There are many volunteering groups here, and my dad volunteers a lot too: since we moved, he has volunteered at my school, helped in the library with me, and reached out to newly arrived Mainland families to help them settle into life here. He is also very active in learning and using Cantonese. We feel that a city that cares for others is the right place for a child to grow up. My parents hope I can get a good education here, and also learn to be a kind and responsible person. Hong Kong is lovely, and I have already made many friends here.",
+ yue:"「一方面係因為媽媽工作調動；但更主要嘅原因，係香港嘅人文關懷吸引咗我哋全家。我哋以前嚟香港旅遊，去過港大生物多樣性博物館，見到大學嘅學生自願做講解員，好有耐性咁同我哋小朋友講解，我哋全家都好感動。呢度有好多義工團體，我爸爸都經常做義工——嚟香港之後佢喺學校做義工，同我一齊去圖書館幫手，仲會主動關心啱啱嚟香港嘅內地家庭，幫佢哋融入呢度嘅生活，佢自己都好主動學粵語、用粵語同人傾偈。我哋覺得，一個願意照顧別人嘅城市，先適合小朋友長大。父母希望我喺呢度接受好嘅教育，亦喺呢度學做一個善良、有擔當嘅人。香港好好，我已經識咗好多朋友。」"},
+
+{id:"B3",cat:"F",en:"What are your strengths and weaknesses?",cn:"你的优点和缺点是什么？",
+ tip:"坦诚说『粤语开口弱』+ 给出正在努力的行动 = 成长型思维的完美展示！",
+ tipEn:"Be honest about your spoken Cantonese and show the action you are taking — that is a perfect growth mindset.",
+ tipYue:"坦白講『粵語開口弱』＋講你正在點努力＝完美展示成長型思維！",
+ cnA:"我的优点是适应力强、有服务心——来港后进步很快，也喜欢帮助别人，甚至教过手钟队队友。缺点是粤语口语：现在能听懂，但还不太敢开口。所以我每天练一点口语，一天比一天勇敢。",
+ enA:"My strengths are adaptability and a service heart — I improved fast after coming to Hong Kong, and I love helping others, even teaching my handbell teammates. My weakness is speaking Cantonese. I can understand it well now, but I am still shy to speak. So I practise speaking a little every day, and I am getting braver.",
+ yue:"「我嘅優點係適應力強、有服務心——嚟香港之後進步好快，又鍾意幫人，仲教過手鐘隊隊友。缺點係粵語口語：而家聽得明，但仲未夠膽開口。所以我每日練少少口語，一日比一日勇敢。」"},
+
+{id:"B4",cat:"F",en:"STEM questions (颜宝铃高频！)",cn:"STEM 常识题：天空为何蓝色？飞机为何能飞？",
+ tip:"不懂就诚实说 'I'm not sure, but I guess...' 然后合理推理——不要沉默！",
+ tipEn:"If you do not know, say honestly, 'I am not sure, but I guess...' and then reason aloud — never stay silent.",
+ tipYue:"唔識就誠實講『我唔係好肯定，但我估…』，然後一路推理——千祈唔好唔出聲！",
+ cnA:"天空蓝：阳光看似白色，其实由很多颜色组成，蓝光在空气中散射得最多，所以天空看起来是蓝色的。飞机：机翼把空气向下推，空气就把飞机向上托，这叫升力。",
+ enA:"The sky is blue because sunlight is made of many colours, and blue light scatters the most in the air. Planes fly because the wings push air down and the air pushes the plane up — that is called lift.",
+ yue:"答唔到都可以咁講：「我唔係好肯定，但我估…」然後講出你嘅推理。面试官睇重你嘅思考过程，唔係標準答案。"},
+
+{id:"B5",cat:"F",en:"How do you understand 'loving our country and Hong Kong'? (香岛专属)",cn:"你如何理解『爱国爱港』？",
+ tip:"分三个层次答，一层比一层深：① 认识（国家历史、地理、文化——《中国文学之美》、历史故事）；② 尊重（国旗国歌、升旗礼，也尊重不同声音、理性表达）；③ 行动（做好本分、做义工、帮助邻居、关心新来港家庭）。收尾金句：香港和内地是一家人，『一国两制』让香港保持独特优势，我希望成为连接两地的人。",
+ tipEn:"Three levels: understanding (history and culture) → respect (flag, anthem, and different voices) → action (doing your part, volunteering, helping new arrivals). Close with Hong Kong and the Mainland as one family under One Country, Two Systems.",
+ tipYue:"分三層答：① 認識（歷史文化）→ ② 尊重（國旗國歌、尊重唔同聲音）→ ③ 行動（做好本分、做義工、幫新來港家庭）。收尾：香港同內地係一家人，一國兩制令香港保持獨特優勢。",
+ cnA:"我觉得爱国爱港有三个层次。第一是认识：认识国家的历史、地理和文化。我很喜欢听蒋勋老师讲《中国文学之美》，也喜欢看历史故事；了解得越多，感情就越深。第二是尊重：尊重国旗、国歌和国家的象征，认真对待每一次升旗礼；同时也尊重不同的声音，理性地表达自己的想法。第三是行动：把自己做好，也为社会出一分力。爱国爱港不一定要做大事——做好学生的本分、做义工、帮助邻居、关心新来港的家庭，都是爱国爱港。香港和内地是一家人，『一国两制』让香港保持独特的优势；我希望长大后能成为连接两地的人，为香港、为国家做一点事。",
+ enA:"I think loving our country and Hong Kong has three levels. The first is understanding — knowing our country's history, geography and culture. I enjoy listening to Mr Chiang Hsun's talks on 'The Beauty of Chinese Literature' and reading history stories; the more I learn, the deeper my feelings grow. The second is respect — respecting our national flag, national anthem and national symbols, taking every flag-raising ceremony seriously, and also respecting different voices and expressing my own views reasonably. The third is action — doing my own part well and giving something back. Loving our country and Hong Kong does not have to be something huge: being a good student, volunteering, helping neighbours and caring for newly arrived families are all ways of doing it. Hong Kong and the Mainland are one family, and 'One Country, Two Systems' keeps Hong Kong's unique strengths. I hope to grow up to be someone who connects the two places and does something for Hong Kong and for our country.",
+ yue:"「我覺得愛國愛港有三個層次。第一係認識：認識國家嘅歷史、地理同文化。我好鍾意聽蔣勳老師講《中國文學之美》，又鍾意睇歷史故事；了解得越多，感情就越深。第二係尊重：尊重國旗、國歌同國家嘅象徵，認真對待每一次升旗禮；同時都尊重唔同嘅聲音，理性咁表達自己嘅想法。第三係行動：做好自己，亦為社會出一分力。愛國愛港唔一定要做大事——做好學生嘅本分、做義工、幫鄰居、關心啱嚟香港嘅家庭，都係愛國愛港。香港同內地係一家人，『一國兩制』令香港保持獨特優勢；我希望長大之後可以做連接兩地嘅人，為香港、為國家做一點事。」",
+ yueNote:"呢題語速要慢、要穩，講「一家人」「一國兩制」嘅時候望住面試官，語氣要真誠。"},
+
+{id:"B6",cat:"F",en:"Are you a Christian? (迦密/银禧可能问)",cn:"你是基督徒吗？",
+ tip:"不是也没关系：尊重 + 价值观相通（关爱、服务、诚实）。",
+ tipEn:"It is fine to say no — show respect and shared values: love, service and honesty.",
+ tipYue:"唔係都冇問題：尊重 ＋ 價值觀相通（關愛、服務、誠實）。",
+ cnA:"我不是基督徒，但我非常尊重学校的价值观。关爱他人、服务社群、诚实做人，这些也是我的家庭和小学教给我的道理。",
+ enA:"No, I am not a Christian, but I respect the school's values very much. Loving others, serving the community and being honest are the same values my family and my primary school taught me.",
+ yue:"「我唔係基督徒，但我好尊重學校嘅價值觀。關愛他人、服務社群、誠實做人，呢啲都係我屋企同小學教畀我嘅道理。」"},
+];
+
+/* ================= 学校策略数据 ================= */
+const SCHOOLS = [
+{name:"保良局颜宝铃书院",pill:"直资 · Band 1 英中 · 土瓜湾",
+ points:["DSE + IB 双轨；英文为主要教学语言，中文科用普通话授课 → 粤语不流利影响最小","面试：小组讨论（中英各一次）+ 朗读普通话/英文文章 + 自我介绍短片（英文+普通话）+ STEM 常识题","录取主要看呈分试排名（面试仅占 10-20%）→ RO 第 8 名是硬优势！"],
+ q1cn:"「颜宝铃书院以优良的英语环境和 IB 课程闻名。我从内地来港后靠努力从年级第 25 名进步到第 8 名，相信自己能很好适应。我了解到贵校中文科以普通话授课，与我的背景很匹配。我也很喜欢校训『爱、敬、勤、诚』，希望成为拥有这些品格的人。」",
+ q1en:"Ngan Po Ling is famous for its strong English environment and the IB programme. I came to Hong Kong from the Mainland and improved from 25th to 8th in my grade through hard work, so I believe I can adapt well here. I also know your Chinese lessons are taught in Putonghua, which fits my background. I love your school motto — Love, Respect, Diligence and Honesty — and I want to grow into a person with these values.",
+ extra:"🎬 短片脚本（60 秒）：Hello, my name is XXX. I came to Hong Kong from the Mainland last year. At first I could not understand Cantonese, but I worked hard and improved from 25th to 8th in my grade. I am a school librarian and I won the 'Serve and Lead' award. I play in the school handbell team — we won second prize in the Hong Kong inter-school competition. I also keep two fancy rats and learned how to care for them by myself. I love learning new things. Thank you!（普通话版见手册）"},
+{name:"香岛中学",pill:"直资 · 九龙塘 · 爱国爱港",
+ points:["香港第一所升起五星红旗的学校；普教中先锋（中一中文用普通话授课）→ 普通话是衔接优势！","评分：面试 20% + 学业 30% + 操行 30% + 课外活动 20% → Serve & Lead 奖最值钱","两轮面试：第二轮约 2 月家长一起面谈 → 见「家长面谈」页"],
+ q1cn:"「香岛中学历史悠久，校风严谨而温暖。我很认同贵校培养学生爱国爱港、服务社群的理念。我去年从内地来港，五年级获得了全校仅两个名额的『Serve and Lead』奖项。我也知道贵校中文科用普通话授课，非常适合我。我希望在这里继续服务他人、提升两文三语。」",
+ q1en:"Heung To Middle School has a long history and a warm, disciplined school culture. I really admire that your school teaches students to love our country and Hong Kong, and to serve the community. I came to Hong Kong last year and I received the 'Serve and Lead' award in Primary 5. I also know your Chinese lessons are taught in Putonghua, which really fits me. I hope to keep serving others and improve my Biliteracy and Trilingualism here.",
+ extra:"💡 加分彩蛋：面谈时自然提到中华文化周、国情考察等具体活动（提前浏览学校网页），比空谈认同有力得多。爱国爱港题（B5）已改成「认识→尊重→行动」三层答法，配金句收尾。"},
+{name:"何明华会督银禧中学",pill:"资助 · Band 1B · 九龙塘",
+ points:["校训『非以役人，乃役于人』= 服务精神，与女儿 Serve & Lead 完美呼应！","初中推行自主学习 + 学生自主阅读计划 → 『自学养花枝鼠』『上网学交叉十字法』就是活例子","评分：学业 50% + 面试 30%（四校最高！）+ 课外活动 20% → 面试重点准备"],
+ q1cn:"「贵校校训『非以役人，乃役于人』深深打动我。我在小学担任图书管理员并参加校外服务，获得『Serve and Lead』奖项，感觉贵校重视的正是我热爱的事。我也喜欢自主学习——我通过看书和看视频自学如何照顾我的两只花枝鼠，还上网学会了分数比较的交叉十字法。我相信银禧是我成长的最好地方。」",
+ q1en:"Your school motto, 'Not to be served, but to serve', really touches my heart. I was a librarian and joined community service in primary school, and I won the 'Serve and Lead' award. I feel your school values exactly what I love doing. I also enjoy independent learning — I taught myself how to care for my two pet rats by reading books and watching videos, and I learned the cross-multiplication method for fractions online. I believe BHJS is the best place for me to grow.",
+ extra:"💡 面试偏好：环保（全港最大校园太阳能项目）、自主学习、阅读习惯——相关题（Q22/Q32/Q33）都往这三点靠。"},
+{name:"迦密中学",pill:"资助 · 基督教 · 何文田",
+ points:["校训『明道律己，忠主善群』；中一除中文/普通话/中史外均用英语授课","面试：中英文个别面谈各约 10 分钟 + 家长面谈约 5 分钟","📌 当天需带：成绩表正本 + 自选最佳小六中英文作文及数学习作各一份正本 + 课外活动记录（奖状复印件）"],
+ q1cn:"「迦密中学以真理和爱心推行全人教育。校训『明道律己，忠主善群』与我的经历很契合——我在小学做图书管理员学会了服务他人并获得奖项，在手钟队还帮助较弱的队员练和声，我明白一个团队的高度是由最弱的队员决定的。我热爱音乐，希望参加学校的音乐团队。」",
+ q1en:"Carmel Secondary School provides whole-person education based on truth and love. Your school motto, 'Understanding the truth, disciplining ourselves, serving God and the community', matches my experience — I learned to serve others as a librarian and won a service award. In the handbell team I even helped weaker members practise harmony, and I learned that a team's level is decided by its weakest member. I love music, and I hope to join the school music team.",
+ extra:"💡 材料对策：『自选』= 挑最好的！现在起小六每次作文认真写、请老师批改，攒 2-3 篇最佳作品；数学挑全对、步骤工整的。基督教学校可能问信仰 → 见题库 B6。"},
+];
+
+/* ================= 家长面谈数据 ================= */
+const PARENTS = [
+{t:"为什么选择香岛中学？",a:"「我们最认同香岛『爱国爱港、服务社群』的办学理念。女儿从内地来港这一年，靠自己的努力适应并进步，我们希望她在贵校这样校风严谨、重视品德的环境里继续成长。贵校中文科用普通话授课，也能帮她顺利衔接。」"},
+{t:"你们如何帮助女儿适应香港的学习和生活？",a:"「我们不过分干预，而是培养她的独立性。比如她养花枝鼠，从查资料到日常照顾都是她自己完成的。学习上我们重习惯、轻分数，每天和她聊聊学校生活，遇到困难先鼓励她自己想办法。我们自己也在身体力行——爸爸在学校的图书馆做义工，也会主动关心新来港的内地家庭，陪他们慢慢融入。」"},
+{t:"您对女儿的期望是什么？",a:"「我们希望她首先成为一个善良、有责任感的人，然后才是成绩。她拿了『Serve and Lead』奖，我们看到她乐于服务他人，这比名次更让我们骄傲。成绩上我们相信她靠自己能继续进步。」"},
+{t:"您如何看待孩子的学业成绩？（成绩中上非顶尖）",a:"「我们更看重她的进步曲线而不是绝对名次：25 名到第 8 名，是在插班、语言不通的情况下取得的，说明她有后劲。我们会继续配合学校，帮她稳步提升。」"},
+{t:"平时如何与学校配合（家校合作）？",a:"「我们重视和学校保持沟通，家长会一定参加，学校的活动也会全力支持。我们也希望以身作则——妈妈在上海长期参与残疾人公益基金会的义工工作，爸爸来港后在学校做义工、帮助新来港家庭融入，让孩子看见『服务』不是口号，而是家里每天在做的事。如果发现女儿有需要改进的地方，会第一时间和老师沟通，家校同心。」"},
+{t:"如果女儿将来成绩退步，你们会怎么处理？",a:"「先了解原因，而不是责备。她这一年证明了自己有自我调整的能力，我们会和她一起分析、制定计划，必要时主动找老师求助。」"},
+];
+
+/* ================= 打卡清单数据 ================= */
+const CHECKS = [
+{g:"📄 材料准备",items:[
+ {t:"确认四校申请状态与面试日期",d:"拿到面试通知后对照本看板做冲刺准备"},
+ {t:"攒小六最佳中英文作文 + 数学习作（迦密）",d:"每次作文认真写、请老师批改，挑 2-3 篇最好的"},
+ {t:"整理成绩表正本 + 奖状复印件（迦密）",d:"Serve & Lead 奖、手钟两项奖状都要复印"},
+ {t:"录制英文自我介绍短片（颜宝铃）",d:"按学校策略页的脚本，练到自然流利、面带微笑"}]},
+{g:"🗣️ 语言训练",items:[
+ {t:"背熟粤语版自我介绍",d:"见题库 B1 粤语版，允许慢，但要敢开口"},
+ {t:"每天 15 分钟粤语影子跟读",d:"听一句说一句，坚持到面试"},
+ {t:"练熟两句『求救句』",d:"『可唔可以用普通话答？』/ 'May I answer in English?'"},
+ {t:"用粤语练 Q18 介绍父母",d:"妈妈 = 勤力好学 + 爱心义工；爸爸 = 有爱心 + 学粤语"},
+ {t:"英文朗读练习（颜宝铃）",d:"每天朗读一篇英文短文，注意语调和停顿"}]},
+{g:"📖 内容准备",items:[
+ {t:"背熟四校的 Q1 定制答案",d:"面试哪间就只背哪间，别背错校名！"},
+ {t:"中英粤三版 60 秒自我介绍",d:"见题库 B1，全部脱口而出"},
+ {t:"准备 Q3 的两个『第一次』故事",d:"游泳比赛（勇气）+ 卖旗（善心），金句一定要背"},
+ {t:"准备 Q5 的 ADHD 同学故事",d:"这是全份笔记最打动人的一段，练到讲得自然"},
+ {t:"熟记 Q12 / Q13 的四个人物例子",d:"卖油翁、科比（凌晨四点）、李丽珊、王计兵"},
+ {t:"背熟 Q38 选择香港的三层理由",d:"个人（港大博物馆义工）→ 家庭（爸爸做义工）→ 社会（义工是基石）"},
+ {t:"准备 Q18 / Q19 的家庭细节",d:"妈妈：AI 编程、熊爪咖啡、残疾人公益；爸爸：学校义工、帮新来港家庭；周末探索香港 + 塔门岛"},
+ {t:"准备 Q15 书籍细节",d:"《牧羊少年的奇幻之旅》+ 蒋勋《中国文学之美》+ Wimpy Kid"},
+ {t:"准备一条具体新闻（Q34）",d:"找一个动物收容所的具体报道，用『新闻+观点+思考』三段式答"},
+ {t:"过一遍 STEM 常识题",d:"见题库 B4：蓝天、飞机、海市蜃楼"},
+ {t:"家长背熟 6 道家长面谈问答",d:"见「家长面谈」页，主打进步曲线 25→8 + 家里做义工的身教"}]},
+{g:"🎭 模拟演练",items:[
+ {t:"全家模拟面试 1-2 轮",d:"随机抽题，按 PREP 公式回答，每题 30-45 秒"},
+ {t:"练面试礼仪",d:"进门问好、眼神微笑、离开道谢 'Thank you for your time'"},
+ {t:"演练语言切换",d:"粤语卡住时大方切换普通话/英文，不慌张"},
+ {t:"练一遍观点题三大思路",d:"抽三题：一题辩证、一题表态、一题按『个人-家庭-社会』答"}]},
+];
+
+/* ================= 逻辑 ================= */
+const LS_M="ms_mastery_v4", LS_C="ms_check_v4";
+let mastery=new Set(JSON.parse(localStorage.getItem(LS_M)||"[]"));
+let checks=new Set(JSON.parse(localStorage.getItem(LS_C)||"[]"));
+let curCat="all";
+
+const $=s=>document.querySelector(s);
+const save=()=>{localStorage.setItem(LS_M,JSON.stringify([...mastery]));localStorage.setItem(LS_C,JSON.stringify([...checks]));};
+
+/* Tabs */
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));
+  b.classList.add("on");
+  ["bank","school","parent","check","shop"].forEach(t=>$("#tab-"+t).classList.toggle("hidden",t!==b.dataset.tab));
+});
+
+/* Chips */
+const chips=$("#chips");
+[{id:"all",name:"全部"}].concat(CATS).forEach(c=>{
+  const b=document.createElement("button");
+  b.className="chip"+(c.id==="all"?" on":""); b.textContent=c.name; b.dataset.cat=c.id;
+  b.onclick=()=>{curCat=c.id;document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x.dataset.cat===c.id));render();};
+  chips.appendChild(b);
+});
+
+/* Render questions */
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+function render(){
+  const kw=$("#search").value.trim().toLowerCase();
+  const list=$("#list"); list.innerHTML="";
+  let shown=0;
+  CATS.forEach(c=>{
+    const items=QS.filter(q=>q.cat===c.id&&(curCat==="all"||curCat===c.id)&&
+      (!kw||(q.en+q.cn+q.tip+(q.tipEn||"")+(q.tipYue||"")+q.cnA+q.enA+q.yue).toLowerCase().includes(kw)));
+    if(!items.length)return;
+    const total=QS.filter(q=>q.cat===c.id).length;
+    const done=QS.filter(q=>q.cat===c.id&&mastery.has(q.id)).length;
+    const h=document.createElement("div");h.className="cathead";
+    h.innerHTML=`${c.name} <span class="pc">${done}/${total}</span><span class="mini"><i style="width:${total?100*done/total:0}%"></i></span>`;
+    list.appendChild(h);
+    if(c.note){
+      const n=document.createElement("div");n.className="catnote";
+      n.innerHTML=`<div class="nt">${esc(c.note.title)}</div>
+        <div class="nl"><b>中</b>${esc(c.note.cn)}</div>
+        <div class="nl"><b>EN</b>${esc(c.note.en)}</div>
+        <div class="nl"><b>粵</b>${esc(c.note.yue)}</div>`;
+      list.appendChild(n);
+    }
+    items.forEach(q=>{
+      shown++;
+      const d=document.createElement("div");
+      d.className="q"+(mastery.has(q.id)?" mastered":"");
+      d.innerHTML=`
+        <div class="head">
+          <span class="no">${q.id}</span>
+          <span class="qt"><div class="en">${esc(q.en)}</div><div class="cn">${esc(q.cn)}</div></span>
+          <label class="mk" onclick="event.stopPropagation()"><input type="checkbox" ${mastery.has(q.id)?"checked":""}> 已掌握</label>
+          <span class="arrow">▶</span>
+        </div>
+        <div class="body">
+          <div class="blk"><span class="tag tip">💡 思路</span><p>${esc(q.tip)}</p>${q.tipEn?`<p class="tipL"><b>EN</b>${esc(q.tipEn)}</p>`:""}${q.tipYue?`<p class="tipL"><b>粵</b>${esc(q.tipYue)}</p>`:""}</div>
+          <div class="blk"><span class="tag cn">🇨🇳 中文答案</span><p>${esc(q.cnA)}</p></div>
+          <div class="blk"><span class="tag en">🇬🇧 English</span><p>${esc(q.enA)}</p></div>
+          <div class="blk"><span class="tag yue">🗣️ 粤语回答</span><p class="yueTxt">${esc(q.yue)}</p>${q.yueNote?`<div class="yueNote">💬 ${esc(q.yueNote)}</div>`:""}</div>
+        </div>`;
+      d.querySelector(".head").onclick=()=>d.classList.toggle("open");
+      d.querySelector("input").onchange=e=>{
+        e.target.checked?mastery.add(q.id):mastery.delete(q.id);
+        d.classList.toggle("mastered",e.target.checked);save();render();
+      };
+      list.appendChild(d);
+    });
+  });
+  if(!shown)list.innerHTML='<div class="none">没有找到相关题目，换个关键词试试 🔍</div>';
+  updateHero();
+}
+function updateHero(){
+  const n=mastery.size,t=QS.length;
+  $("#heroNum").textContent=n;
+  $("#heroBar").style.width=(t?100*n/t:0)+"%";
+  $("#heroPct").textContent=Math.round(t?100*n/t:0)+"%";
+  $("#cntBank").textContent=n+"/"+t;
+  updateMascot();
+  if(n===t&&!celebrated){celebrated=true;confetti();bubbleMsg("全部掌握！你是真正的面试之星！🏆");}
+  if(n<t)celebrated=false;
+}
+$("#search").oninput=render;
+
+/* Schools */
+$("#schools").innerHTML=SCHOOLS.map(s=>`
+  <div class="school">
+    <h3>🏫 ${s.name} <span class="pill">${s.pill}</span></h3>
+    <ul>${s.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>
+    <div class="ansbox"><b>Q1 定制答案 · 中：</b>${esc(s.q1cn)}</div>
+    <div class="ansbox"><b>Q1 Answer · EN：</b>${esc(s.q1en)}</div>
+    <div class="ansbox">${esc(s.extra)}</div>
+  </div>`).join("");
+
+/* Parents */
+$("#parents").innerHTML='<div style="margin:14px 0;font-size:13px;color:var(--ink2)">香岛中学第二轮（约 2 月）学生 + 家长一起面谈。回答要真诚简洁，主打「进步曲线 25→8」，并加入家里做义工的身教（妈妈：残疾人公益 / 爸爸：学校义工 + 帮助新来港家庭），切忌背诵感。</div>'+
+ PARENTS.map((p,i)=>`
+  <div class="q"><div class="head"><span class="no">P${i+1}</span><span class="qt"><div class="cn" style="font-weight:600;font-size:14px">${esc(p.t)}</div></span><span class="arrow">▶</span></div>
+  <div class="body"><div class="blk"><span class="tag cn">🗨️ 参考回答</span><p>${esc(p.a)}</p></div></div></div>`).join("");
+document.querySelectorAll("#parents .q .head").forEach(h=>h.onclick=()=>h.parentElement.classList.toggle("open"));
+
+/* Checklist */
+let ckIdx=0;
+$("#checks").innerHTML=CHECKS.map(g=>`
+  <div class="ckgroup"><h3>${g.g}</h3>
+  ${g.items.map(it=>{const id="ck"+(ckIdx++);return `
+    <label class="ck ${checks.has(id)?"done":""}" data-id="${id}">
+      <input type="checkbox" ${checks.has(id)?"checked":""}>
+      <span><span class="t">${esc(it.t)}</span><div class="d">${esc(it.d)}</div></span>
+    </label>`;}).join("")}
+  </div>`).join("");
+const CK_TOTAL=ckIdx;
+document.querySelectorAll(".ck").forEach(l=>{
+  l.querySelector("input").onchange=e=>{
+    e.target.checked?checks.add(l.dataset.id):checks.delete(l.dataset.id);
+    l.classList.toggle("done",e.target.checked);save();updateCk();
+  };
+});
+function updateCk(){$("#cntCheck").textContent=checks.size+"/"+CK_TOTAL;updateCookies();updateMood();renderShop();}
+$("#cntCheck").textContent=checks.size+"/"+CK_TOTAL;
+
+/* ===== 花枝鼠吉祥物：点击换加油语 ===== */
+const CHEERS=["主人加油！","面试必胜！","你是最棒嘅！","手钟一响，offer 到手！","微笑加眼神，稳晒！","25→8，继续冲！","慢慢讲，唔使急！","花枝鼠为你打气！","今日又进步咗啦！","Serve and Lead，舍你其谁！","勇气唔係唔怕，係惊都做完成！","我哋都要帮最弱嘅队友！"];
+function bubbleMsg(t){
+  const b=$("#bubble");
+  b.textContent=t;
+  b.classList.remove("pop");void b.offsetWidth;b.classList.add("pop");
+}
+let lastCheer=0;
+$("#mascot").onclick=()=>{
+  let i;do{i=Math.floor(Math.random()*CHEERS.length);}while(i===lastCheer);
+  lastCheer=i;
+  bubbleMsg(CHEERS[i]);
+};
+
+/* ===== 装扮系统：每掌握 3 题换新装 ===== */
+const OUTFITS=[
+ {min:3, name:"🎓 小学霸", svg:'<g><polygon points="105,30 145,45 105,60 65,45" fill="#3A3A3A"/><line x1="145" y1="45" x2="153" y2="72" stroke="#F2C14E" stroke-width="4"/><circle cx="153" cy="74" r="5" fill="#F2C14E"/><circle cx="85" cy="98" r="11" fill="rgba(255,255,255,.25)" stroke="#33302C" stroke-width="3"/><circle cx="125" cy="98" r="11" fill="rgba(255,255,255,.25)" stroke="#33302C" stroke-width="3"/><line x1="96" y1="98" x2="114" y2="98" stroke="#33302C" stroke-width="3"/></g>'},
+ {min:6, name:"🧣 光荣少先队员", svg:'<g><polygon points="105,138 84,172 105,158 126,172" fill="#D64545"/><polygon points="105,138 98,158 105,164 112,158" fill="#B53030"/></g>'},
+ {min:9, name:"👑 服务小女王", svg:'<g><polygon points="105,20 117,46 142,40 130,60 80,60 68,40 93,46" fill="#F2C14E" stroke="#D9A72E" stroke-width="2"/><circle cx="105" cy="42" r="4" fill="#D64545"/><circle cx="88" cy="48" r="3" fill="#4A7DD6"/><circle cx="122" cy="48" r="3" fill="#4A7DD6"/></g>'},
+ {min:12,name:"🦸 冲关小超人", svg:'<g><polygon points="62,128 40,158 48,196 66,176 72,148" fill="#D64545"/><polygon points="148,128 170,158 162,196 144,176 138,148" fill="#D64545"/><polygon points="88,138 105,154 122,138 118,132 105,142 92,132" fill="#D64545"/></g>'},
+ {min:15,name:"🎧 音乐小达人", svg:'<g><path d="M58,80 Q105,24 152,80" fill="none" stroke="#555049" stroke-width="10" stroke-linecap="round"/><rect x="46" y="66" width="18" height="30" rx="8" fill="#555049"/><rect x="146" y="66" width="18" height="30" rx="8" fill="#555049"/><text x="168" y="55" font-size="28" fill="#F2C14E">♪</text><text x="26" y="60" font-size="22" fill="#F2C14E">♫</text></g>'},
+ {min:18,name:"🎀 优雅小公主", svg:'<g><polygon points="105,52 76,36 82,66" fill="#F08CA6"/><polygon points="105,52 134,36 128,66" fill="#F08CA6"/><circle cx="105" cy="52" r="8" fill="#D65F84"/><circle cx="70" cy="30" r="3" fill="#fff" opacity=".9"/><circle cx="142" cy="26" r="2.5" fill="#fff" opacity=".9"/></g>'},
+ {min:21,name:"⭐ 面试之星", svg:'<g><ellipse cx="105" cy="46" rx="46" ry="10" fill="none" stroke="#F2C14E" stroke-width="5" opacity=".95"/><circle cx="62" cy="36" r="4" fill="#F2C14E"/><circle cx="150" cy="36" r="4" fill="#F2C14E"/><circle cx="105" cy="22" r="4.5" fill="#F2C14E"/><circle cx="40" cy="86" r="3" fill="#F2C14E"/><circle cx="170" cy="86" r="3" fill="#F2C14E"/></g>'},
+];
+function curOutfit(m){let o=null;OUTFITS.forEach(x=>{if(m>=x.min)o=x;});return o;}
+let prevOutfit="";
+function updateMascot(){
+  const m=mastery.size,o=curOutfit(m);
+  $("#outfitG").innerHTML=o?o.svg:"";
+  $("#outfitLbl").textContent="🎀 装扮："+(o?o.name:"原味小鼠")+"（"+m+"/"+QS.length+" 题）";
+  if(o&&prevOutfit&&o.name!==prevOutfit){bubbleMsg("我换上新衣服啦！"+o.name+"！继续冲！🎉");}
+  prevOutfit=o?o.name:"";
+  updateMood();
+}
+
+/* ===== 老鼠饼干：打卡得饼干，喂小鼠 / 换特权 ===== */
+const LS_F="ms_fed_v4", LS_R="ms_redeem_v4", LS_REC="ms_redeem_rec_v4";
+let fed=parseInt(localStorage.getItem(LS_F)||"0");
+let redeemed=parseInt(localStorage.getItem(LS_R)||"0");
+let redeemRec=JSON.parse(localStorage.getItem(LS_REC)||"[]");
+function cookieAvail(){return Math.max(0,checks.size-fed-redeemed);}
+function updateCookies(){
+  const a=cookieAvail();
+  $("#cookieN").textContent=a;
+  $("#feedBtn").disabled=a<=0;
+  renderRewardStrip();
+}
+/* ===== 主页奖励橱窗 ===== */
+function renderRewardStrip(){
+  const el=$("#rewardRow");if(!el)return;
+  const a=cookieAvail();
+  el.innerHTML=SHOP.map(s=>{
+    const can=a>=s.cost;
+    const miss=can?"✓ 可兑换":"还差 "+(s.cost-a)+" 块";
+    return `<span class="rchip ${can?"can":""}" data-go="shop" title="${esc(s.desc)}">${s.ic} ${esc(s.name)} <span class="pr">🍪${s.cost} · ${miss}</span></span>`;
+  }).join("");
+  el.querySelectorAll(".rchip").forEach(c=>c.onclick=()=>{
+    const b=document.querySelector('.tab[data-tab="shop"]');
+    if(b)b.click();
+  });
+}
+const THANKS=[
+ "好吃！谢谢主人！🍪","Yummy! Thank you, master!","好好味！唔该主人！",
+ "饼干太好吃啦！我继续为你加油！","Best cookie ever! More studying, please!","正啊！呢块鼠饼一流！",
+ "吃饱饱，加油更用力！","One more cookie, one step closer to our dream school!","好味到震！多谢晒主人！",
+ "鼠饼满分！主人最好了！","This cookie is delishious! I mean, delicious! 😋","有饼食，自然有力量！继续温书！"
+];
+let lastThx=-1;
+$("#feedBtn").onclick=()=>{
+  if(cookieAvail()<=0){bubbleMsg("冇饼干啦，先去打卡清单做任务呀！📝");return;}
+  fed++;localStorage.setItem(LS_F,String(fed));updateCookies();
+  const f=document.createElement("div");f.className="fly";f.textContent="🍪";
+  const r1=$("#feedBtn").getBoundingClientRect(),r2=$("#mascot").getBoundingClientRect();
+  f.style.left=r1.left+"px";f.style.top=r1.top+"px";
+  document.body.appendChild(f);
+  requestAnimationFrame(()=>{
+    f.style.left=(r2.left+r2.width/2)+"px";f.style.top=(r2.top+r2.height/2)+"px";
+    f.style.opacity=".15";f.style.transform="scale(.3)";
+  });
+  setTimeout(()=>f.remove(),750);
+  const m=$("#mascot");m.classList.add("munch");setTimeout(()=>m.classList.remove("munch"),520);
+  let i;do{i=Math.floor(Math.random()*THANKS.length);}while(i===lastThx);
+  lastThx=i;
+  setTimeout(()=>bubbleMsg(THANKS[i]),350);
+};
+
+/* ===== 连击火苗：每天打开自动 +1 ===== */
+const LS_S="ms_streak_v4";
+let streakData=JSON.parse(localStorage.getItem(LS_S)||'{"last":"","n":0}');
+function tickStreak(){
+  const today=new Date().toISOString().slice(0,10);
+  if(streakData.last===today){$("#streakLbl").textContent="🔥 连击 "+streakData.n+" 天";return;}
+  const yest=new Date(Date.now()-864e5).toISOString().slice(0,10);
+  const isNew=(streakData.last==="");
+  streakData.n=(streakData.last===yest)?streakData.n+1:1;
+  streakData.last=today;
+  localStorage.setItem(LS_S,JSON.stringify(streakData));
+  $("#streakLbl").textContent="🔥 连击 "+streakData.n+" 天";
+  if(!isNew&&streakData.n>1)bubbleMsg("连续学习第 "+streakData.n+" 天！🔥 小鼠为你骄傲！");
+}
+
+/* ===== 小鼠心情值：随总进度变化表情 ===== */
+function moodTier(){
+  const p=(mastery.size/QS.length+checks.size/CK_TOTAL)/2;
+  if(p<0.1)return"Z";
+  if(p<0.4)return"N";
+  if(p<0.75)return"H";
+  return"S";
+}
+const MOODS={Z:"😴 打瞌睡",N:"🙂 微笑",H:"😄 好开心",S:"🤩 星星眼"};
+function updateMood(){
+  const t=moodTier();
+  ["N","H","S","Z"].forEach(k=>{const g=$("#face"+k);if(g)g.style.display=(k===t)?"":"none";});
+  const l=$("#moodLbl");if(l)l.textContent="💗 心情："+MOODS[t];
+}
+
+/* ===== 特权商店 ===== */
+const SHOP=[
+ {cost:5, ic:"🍦", name:"甜品时间", desc:"周末甜品一份，向家长兑现"},
+ {cost:8, ic:"🎮", name:"游戏 30 分钟", desc:"自由游戏时间，timer 由家长定"},
+ {cost:10,ic:"🎬", name:"电影之夜", desc:"全家一起看一部她选的电影"},
+ {cost:12,ic:"🧹", name:"免家务一次", desc:"今天免做一项日常家务"},
+ {cost:16,ic:"🌟", name:"心愿特权", desc:"一个合理的小心愿，家长审核兑现"},
+];
+function renderShop(){
+  const a=cookieAvail();
+  const w=$("#shopWallet");
+  if(w)w.textContent="🍪 当前饼干余额："+a+" 块（共赚得 "+checks.size+"，已喂 "+fed+"，已兑换 "+redeemed+"）";
+  const el=$("#shopList");if(!el)return;
+  el.innerHTML=SHOP.map((s,i)=>`
+    <div class="shopitem">
+      <span class="ic">${s.ic}</span>
+      <span class="info"><div class="nm">${s.name} <span style="color:var(--ink3);font-weight:400;font-size:13px">（${s.cost} 块饼干）</span></div>
+      <div class="ds">${s.desc}</div></span>
+      <button class="buy" data-i="${i}" ${a<s.cost?"disabled":""}>${a<s.cost?"饼干不足":"兑换"}</button>
+    </div>`).join("");
+  el.querySelectorAll(".buy").forEach(b=>b.onclick=()=>{
+    const s=SHOP[+b.dataset.i];
+    if(cookieAvail()<s.cost)return;
+    if(!confirm("用 "+s.cost+" 块饼干兑换「"+s.name+"」？\n\n兑换后记得提醒家长兑现哦！"))return;
+    redeemed+=s.cost;
+    localStorage.setItem(LS_R,String(redeemed));
+    const today=new Date().toLocaleDateString();
+    redeemRec.push({n:s.ic+" "+s.name,d:today});
+    localStorage.setItem(LS_REC,JSON.stringify(redeemRec));
+    renderShop();updateCookies();confetti(30);
+    bubbleMsg("兑换成功！"+s.ic+s.name+"！记得揾家长兑现呀！🎁");
+  });
+  const r=$("#shopRecord");
+  if(r)r.innerHTML=redeemRec.length?
+    "<h3 style='font-size:15px;margin-bottom:8px'>📜 已兑换记录</h3>"+
+    redeemRec.slice().reverse().map(x=>`<div class="record">${esc(x.n)} <span style="color:var(--ink3)">· ${esc(x.d)}</span></div>`).join("")
+    :"";
+}
+
+/* ===== 满级彩带庆祝 ===== */
+let celebrated=false;
+function confetti(n){
+  n=n||60;
+  const colors=["#C4573B","#F2C14E","#2F7D6D","#F08CA6","#4A7DD6"];
+  for(let i=0;i<n;i++){
+    const c=document.createElement("div");c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.background=colors[i%colors.length];
+    c.style.animationDuration=(2.5+Math.random()*2)+"s";
+    c.style.animationDelay=(Math.random()*.8)+"s";
+    c.style.borderRadius=Math.random()>.5?"50%":"2px";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5500);
+  }
+}
+
+/* Reset */
+function resetAll(){  if(!confirm("确定要清空所有『已掌握』、打卡、饼干、装扮和连击记录吗？"))return;
+  mastery.clear();checks.clear();fed=0;redeemed=0;redeemRec=[];prevOutfit="";celebrated=false;
+  streakData={last:"",n:0};
+  localStorage.setItem(LS_F,"0");localStorage.setItem(LS_R,"0");
+  localStorage.setItem(LS_REC,"[]");localStorage.setItem(LS_S,JSON.stringify(streakData));
+  save();render();renderShop();$("#streakLbl").textContent="🔥 连击 0 天";
+  document.querySelectorAll(".ck").forEach(l=>{l.classList.remove("done");l.querySelector("input").checked=false;});
+  updateCk();
+}
+render();
+updateCk();
+tickStreak();
+renderShop();
+</script>
+</body>
+</html>
