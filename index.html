@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>升中面试备战看板 · 定制版 v4</title>
+<title>升中面试备战看板 · 定制版 v6</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='11' cy='11' r='7' fill='%23CFCBC4'/%3E%3Ccircle cx='11' cy='11' r='3.6' fill='%23F2B8C6'/%3E%3Ccircle cx='29' cy='11' r='7' fill='%23CFCBC4'/%3E%3Ccircle cx='29' cy='11' r='3.6' fill='%23F2B8C6'/%3E%3Ccircle cx='20' cy='23' r='13' fill='%23CFCBC4'/%3E%3Ccircle cx='15' cy='21' r='2' fill='%2333302C'/%3E%3Ccircle cx='25' cy='21' r='2' fill='%2333302C'/%3E%3Cellipse cx='20' cy='26' rx='3' ry='2.2' fill='%23F08CA6'/%3E%3Cellipse cx='13' cy='25' rx='2.5' ry='1.6' fill='%23F2B8C6'/%3E%3Cellipse cx='27' cy='25' rx='2.5' ry='1.6' fill='%23F2B8C6'/%3E%3C/svg%3E">
 <style>
   /* ===== 花枝鼠滚动条 ===== */
@@ -85,6 +85,25 @@
   .blk p.tipL b{color:#B8860B;margin-right:4px}
   .blk p.yueTxt{background:#FDF4F8;border-left:3px solid #E79BBC;padding:10px 12px;border-radius:0 8px 8px 0;font-size:14px}
   .yueNote{font-size:12px;color:var(--ink3);margin-top:6px}
+  /* ===== 关键词高亮（对应原稿粗体）===== */
+  .blk p mark{background:#FFE9A8;color:#5A3E06;font-weight:700;padding:1px 5px;border-radius:5px;box-shadow:inset 0 -2px 0 #EBCB72}
+  .blk p.yueTxt mark{background:#FFD9E6;color:#7A2143;box-shadow:inset 0 -2px 0 #EFA9C4}
+  .blk p.tipL mark{background:#FBEFD3;color:#8A5A16;font-weight:700;padding:0 3px;border-radius:4px}
+  .catnote .nl mark{background:#FFE9A8;color:#5A3E06;font-weight:700;padding:1px 4px;border-radius:4px}
+  .hllegend{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--ink2);background:#FFFDF5;border:1px dashed #EBCB72;border-radius:10px;padding:8px 12px;margin:10px 0 14px}
+  .hllegend mark{background:#FFE9A8;color:#5A3E06;font-weight:700;padding:1px 6px;border-radius:5px}
+  /* ===== 🔊 朗读按钮 ===== */
+  .spk{display:inline-flex;align-items:center;gap:3px;font-family:inherit;font-size:11px;line-height:1;
+    padding:3px 9px;margin-left:7px;border-radius:99px;border:1px solid var(--line);background:#fff;
+    color:var(--ink2);cursor:pointer;vertical-align:middle;transition:.15s;white-space:nowrap}
+  .spk:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+  .spk.playing{background:var(--accent);border-color:var(--accent);color:#fff;animation:pulse 1s ease-in-out infinite}
+  .spk.mini{padding:2px 7px;font-size:10.5px;margin-left:5px}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .spkrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--ink2)}
+  .spkrow select{font-family:inherit;font-size:12.5px;padding:5px 9px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink2);cursor:pointer}
+  .spkrow .noV{margin-left:4px;font-size:11.5px;color:#B03A6B;background:#FDE8EF;border:1px solid #F0CFDD;border-radius:6px;padding:2px 8px}
+  .blk .tag+.spk,.blk .spk+.spk{margin-bottom:6px}
   .blk .alt{font-size:13.5px;background:#F5FBF9;border-left:3px solid #8FC7B8;padding:8px 12px;border-radius:0 8px 8px 0;margin-top:6px}
 
   /* ===== School cards ===== */
@@ -163,7 +182,7 @@
   .bubble.pop{animation:pop .35s ease}
 
   @media print{
-    nav,.tools,.foot,.mk,.mascot{display:none!important}
+    nav,.tools,.foot,.mk,.mascot,.spk{display:none!important}
     .q .body{display:block!important}
     body{background:#fff}
     .q,.school,.ck{break-inside:avoid}
@@ -174,8 +193,8 @@
 
 <header>
   <div class="wrap">
-    <h1>🎓 升中面试备战看板 · 定制版 v4</h1>
-    <p>目标：颜宝铃书院 · 香岛中学 · 银禧中学 · 迦密中学 ｜ 我的标签：适应力强 · 服务领导 · 坚持自学 · 人文关怀 · 勇气与运动</p>
+    <h1>🎓 升中面试备战看板 · 定制版 v6</h1>
+    <p>目标：颜宝铃书院 · 香岛中学 · 银禧中学 · 迦密中学 ｜ 我的标签：适应力强 · 服务领导 · 坚持自学 · 人文关怀 · 勇气与运动<br><b>🆕 v6 新增</b>：🔊 点击喇叭可以听朗读（英文 / 粤语 / 中文）· ⭐ 核心准备问题 G1–G6（三语答案 · 关键词高亮）</p>
     <div class="hero">
       <div><div class="num" id="heroNum">0</div><div class="lbl">题已掌握</div></div>
       <div class="pbar"><i id="heroBar" style="width:0%"></i></div>
@@ -274,6 +293,18 @@
     <input class="search" id="search" placeholder="🔍 搜索题目或答案关键词，如：粤语 / 手钟 / 动物 / 义工 / 游泳 / 王计兵…">
     <span style="font-size:12px;color:var(--ink3)">点击题目展开答案 · 打钩记录掌握</span>
   </div>
+  <div class="tools spkrow">
+    <span>🔊 朗读设置：</span>
+    <label>语速
+      <select id="ttsRate">
+        <option value="0.65">🐢 很慢（初练）</option>
+        <option value="0.85" selected>🚶 慢（推荐）</option>
+        <option value="1">▶ 正常</option>
+        <option value="1.15">🐇 快（挑战）</option>
+      </select>
+    </label>
+    <span id="ttsStat"></span>
+  </div>
   <div class="tools" id="chips"></div>
   <div id="list"></div>
 </section>
@@ -317,7 +348,16 @@ const OPINION_NOTE={
  yue:"① 如果題目有正反面，就用辯證思維：先承認嗰個現象點解會存在，再講條件同界線，用舉例、對比，結合時事同歷史去支撐。② 如果只有一個明確立場（支持或者反對），就先清清楚楚表態，再講兩三個理由加一個例子，最後重申睇法。③ 如果同社會熱點、政府做法有關，就由「自己（學生）→ 家庭 → 社會」三層出發，既要講短期措施嘅合理性，都要講大眾長期行為嘅影響。"
 };
 
+/* 核心准备问题通用说明卡：来自《Self Introduction - Yu Xiaoyuan - Important》文件的红色标题 */
+const CORE_NOTE={
+ title:"⭐ 核心准备问题 · 这一页怎么用 / How to Use This Page / 核心準備問題點用",
+ cn:"这六个问题是从自我介绍原稿（红色标题部分）整理出来的「面试主线」。用法很简单：**先背 G1、G2 自我介绍**，再背 **G3 优点 → G4 缺点 → G5 兴趣 → G6 目标**；面试官大部分问题，其实都是从这四块「长出来」的。每题都用「🧩 结构公式 + 🇨🇳🇬🇧🗣️ 三语答案 + 黄色高亮关键词」呈现——**黄色高亮 = 必须背到脱口而出的关键词**，其余内容按自己的话讲就好，不用逐字背。",
+ en:"These six questions come from the red headings in your Self-Introduction document — they are the 'main line' of the whole interview. Learn G1 and G2 (self-introduction) first, then G3 strengths → G4 weaknesses → G5 interests → G6 goals. Most interviewer questions grow out of these four blocks. Each card gives a structure formula, the answer in three languages, and yellow highlights — the **yellow highlights are the keywords you must know by heart**; everything else can be said in your own words.",
+ yue:"呢六條問題係由自我介紹原稿（紅色標題部分）整理出嚟嘅「面試主線」。用法好簡單：**先背 G1、G2 自我介紹**，再背 **G3 優點 → G4 缺點 → G5 興趣 → G6 目標**；面試官大部分問題，其實都係由呢四塊「生」出嚟嘅。每題都用「🧩 結構公式 ＋ 🇨🇳🇬🇧🗣️ 三語答案 ＋ 黃色高亮關鍵詞」呈現——**黃色高亮 ＝ 一定要背到一開口就講得出嘅關鍵詞**，其餘內容用自己嘅話講就得，唔使逐個字背。"
+};
+
 const CATS = [
+  {id:"G", name:"⭐ 核心准备问题", note:CORE_NOTE},
   {id:"A", name:"背景与动机"},
   {id:"B", name:"性格与压力"},
   {id:"C", name:"价值观两难", note:OPINION_NOTE},
@@ -326,6 +366,61 @@ const CATS = [
   {id:"F", name:"补充必考"},
 ];
 const QS = [
+/* ===== ⭐ 核心准备问题（来自《Self Introduction - Yu Xiaoyuan - Important》）===== */
+{id:"G1",cat:"G",en:"Please introduce yourself. (1-minute version)",cn:"请自我介绍（1 分钟精简版）",
+ tip:"🧩 结构公式：① 身份 + 三个关键词（开朗・乐观・适应力强）→ ② 适应力故事（学粤语）＋ 成绩数据（25→8）→ ③ 服务（图书管理员・义工・Serve and Lead 奖）→ ④ 团队（手钟队・篮球）→ ⑤ 收尾展望。黄色高亮＝必背关键词，先背这些，其余内容用自己的话讲。",
+ tipEn:"Structure: identity + three keywords → adaptation story (Cantonese) + the 25th-to-8th result → service (librarian, volunteering, the award) → teamwork (handchimes, basketball) → closing outlook. Learn the highlights first; the rest can be in your own words.",
+ tipYue:"結構公式：① 身份 ＋ 三個關鍵詞（開朗・樂觀・適應力強）→ ② 適應力故事（學粵語）＋ 成績數據（25→8）→ ③ 服務（圖書管理員・義工・Serve and Lead 獎）→ ④ 團隊（手鐘隊・籃球）→ ⑤ 收尾展望。黃色高亮 ＝ 必背關鍵詞，先背呢啲。",
+ cnA:"我叫 XXX，是圣三一堂小学的小六学生。我是一个**开朗**、**乐观**、**适应力强**，而且**学习能力好**的学生。去年我来到香港，之前从来没有学过粤语。通过每天练习，我现在已经可以和老师、同学自在地沟通了；我的年级排名也从第 25 名进步到第 8 名。\n\n**课堂之外，我喜欢为学校社群出一分力。**作为学生图书管理员，我帮忙整理图书、支援同学。我也参加义工活动，包括慈善卖旗和去护老院探望长者。这些经历让我培养了服务精神、责任感和对他人的共情。**我很荣幸获得「Serve and Lead Award」，全级只有两位小五学生得到这个嘉许。**\n\n**我也是学校手钟队的成员**——我们队在香港校际音乐比赛 2026 夺得银奖，并在 2026 HMHK 国际手铃比赛中获得铜奖。我还代表学校参加篮球比赛。**通过这些活动，我学会了团队合作、纪律，以及互相支持的重要。**\n\n升上中学后，我希望在学业上继续成长，继续服务社群，并为学校带来正面的贡献。",
+ enA:"My name is XXX and I am a Primary 6 student from Holy Trinity Primary School.\n\nI am a **cheerful**, **optimistic**, **adaptable student** with good learning ability. Last year, I moved to Hong Kong and had never learned Cantonese before. Through daily practice, I can now communicate comfortably with my teachers and classmates. I also improved my academic ranking from 25th to 8th in my grade.\n\n**Outside the classroom, I enjoy contributing to my school community.** As a student librarian, I help organize books and support my classmates. I also participate in volunteer activities, including flag-selling for charity and visiting elderly people in care homes. These experiences have helped me develop a spirit of service, responsibility and empathy for others. **I was honoured to receive the “Serve and Lead Award”, one of only two Primary 5 students to receive this recognition.**\n\n**I am also a member of the school handchime team** — our team achieved a Silver Award in the Joint School Music Competition 2026 and a Bronze Award in the 2026 HMHK International Handbell Competition. I also represent my school in basketball competitions. **Through these activities, I have learned teamwork, discipline and the importance of supporting one another.**\n\nIn secondary school, I hope to continue growing academically, serving the community and contributing positively to my school.",
+ yue:"「我叫 XXX，係聖三一堂小學嘅小六學生。我係一個**開朗**、**樂觀**、**適應力強**，而且**學習能力好**嘅學生。舊年我嚟到香港，之前完全冇學過粵語。靠住每日練習，我而家已經可以同老師、同學輕鬆咁溝通；我嘅年級排名都由第 25 名進步到第 8 名。\n\n**課堂以外，我好鍾意為學校社群出一分力。**作為學生圖書管理員，我會幫手整理圖書、支援同學。我都有參加義工活動，包括慈善賣旗同去護老院探訪長者。呢啲經歷令我培養咗服務精神、責任感，同埋對別人嘅同理心。**我好榮幸攞到「Serve and Lead Award」，全級只有兩個小五學生得到呢個嘉許。**\n\n**我亦都係學校手鐘隊嘅成員**——我哋隊喺香港校際音樂比賽 2026 攞到銀獎，喺 2026 HMHK 國際手鈴比賽攞到銅獎。我仲代表學校參加籃球比賽。**透過呢啲活動，我學識咗團隊合作、紀律，同埋互相支持嘅重要。**\n\n升上中學之後，我希望喺學業上繼續成長，繼續服務社群，為學校帶嚟正面嘅貢獻。」",
+ yueNote:"一開口講「我叫 XXX」要清楚慢少少；講到「25 名進步到第 8 名」同「Serve and Lead Award」要放慢、加重語氣，呢兩句係全段嘅亮點。"},
+
+{id:"G2",cat:"G",en:"Self-introduction — short version (30–40 seconds)",cn:"自我介绍 · 精简版（30～40 秒）",
+ tip:"🧩 结构公式：开场身份 → 一句话性格 → 适应力＋成绩 → 服务与奖项。原稿讲明这版更有说服力，因为五个核心信息一目了然：**Adaptability（学粤语）→ Growth Mindset（成绩跃升）→ Service Leadership（Serve and Lead Award）→ Teamwork（手钟队、篮球队）→ Character（乐观、愿意帮助别人）**。面试时间短就用这版；把五个英文词背熟，任何自我介绍都不会漏重点。",
+ tipEn:"Formula: identity → one line of character → adaptation + results → service and award. The original notes say this version is more persuasive because five core messages are instantly clear: Adaptability, Growth Mindset, Service Leadership, Teamwork, Character. Use it when time is short.",
+ tipYue:"結構公式：開場身份 → 一句性格 → 適應力＋成績 → 服務同獎項。原稿話呢版更有說服力，因為五個核心信息一眼睇晒：**Adaptability（學粵語）→ Growth Mindset（成績躍升）→ Service Leadership（Serve and Lead Award）→ Teamwork（手鐘隊、籃球隊）→ Character（樂觀、願意幫人）**。唔夠時間就用呢版。",
+ cnA:"我是 XXX，圣三一堂小学的小六学生。我是一个**开朗、乐观、适应力强**的学生。去年我来到香港，之前从来没学过粤语，但通过每天练习，我现在已经可以和老师、同学沟通；我的年级排名也从**第 25 名进步到第 8 名**。\n\n**课堂之外，**我是学校手钟队的成员，也曾经是篮球队的队员、担任过学生图书管理员。我喜欢通过义工工作服务别人，包括卖旗和探望长者。我**很荣幸**获得「Serve and Lead Award」，这个奖鼓励我继续帮助别人。",
+ enA:"I am XXX, a Primary 6 student from Holy Trinity Primary School. I am a **cheerful, optimistic and adaptable** student. I moved to Hong Kong last year and had never learned Cantonese, but through daily practice I can now communicate with my teachers and classmates, and my grade ranking improved from **25th to 8th**.\n\n**Outside the classroom,** I am a member of the school handchime team, and I was also a player in the basketball team and served as a student librarian. I enjoy serving others through volunteer work, including flag-selling and visiting elderly people. I was **honoured** to receive the “Serve and Lead Award”, which encouraged me to continue helping others.",
+ yue:"「我係 XXX，聖三一堂小學嘅小六學生。我係一個**開朗、樂觀、適應力強**嘅學生。舊年我嚟到香港，之前從來冇學過粵語，但靠住每日練習，我而家已經可以同老師、同學溝通；我嘅年級排名都由**第 25 名進步到第 8 名**。\n\n**課堂以外，**我係學校手鐘隊嘅成員，都做過籃球隊隊員同學生圖書管理員。我好鍾意透過義工工作服務別人，包括賣旗同探訪長者。我**好榮幸**攞到「Serve and Lead Award」，呢個獎鼓勵我繼續幫人。」",
+ yueNote:"呢版短，所以節奏要穩：講完「25 名進步到第 8 名」停半拍，再講服務部分，面試官會聽得好清楚。"},
+
+{id:"G3",cat:"G",en:"What are your strengths?",cn:"你的优点是什么？",
+ tip:"🧩 结构公式：三个优点，一硬一软一行动——① 适应力（粤语的真实故事）→ ② 勤奋／持续进步（25→8 的数据）→ ③ 服务心（图书管理员＋义工＋奖项）。每个优点后面**必须跟一个真实例子**，不要只讲形容词。收尾用「同理心、责任感」两个词总结。",
+ tipEn:"Three strengths in one pattern — ability, effort, action: adaptability (the Cantonese story) → continuous improvement (the 25th-to-8th data) → a service heart (librarian, volunteering, the award). Every strength must be followed by a real example.",
+ tipYue:"三個優點，一硬一軟一行動：① 適應力（學粵語嘅真實故事）→ ② 勤力／持續進步（25→8 嘅數據）→ ③ 服務心（圖書管理員＋義工＋獎項）。每個優點後面**一定要跟一個真實例子**，唔好淨係講形容詞。",
+ cnA:"我**适应力强、勤奋，而且乐于服务**。\n\n去年我来到香港时，之前从来没有**学过粤语**。一开始，在全新的环境里沟通和学习都很困难。靠着每天练习和坚持，我现在已经可以用粤语和老师、同学自在地沟通。这段经历教会我拥抱挑战，面对转变时保持积极。\n\n我也相信**持续进步**。过去一年，我努力改善学习习惯、提升学业表现，年级排名从第 25 名进步到第 8 名。这让我明白：进步来自坚持和持续的努力。\n\n此外，**我喜欢服务别人、为社群出一分力**。作为学生图书管理员，我帮忙整理图书、支援同学。我也参加义工活动，包括慈善卖旗和去护老院探望长者。这些经历让我培养了同理心和责任感。我很荣幸获得「Serve and Lead Award」，小五全级只有两位同学得到这个嘉许。",
+ enA:"I am **adaptable, hardworking and service-oriented.**\n\nWhen I moved to Hong Kong last year, I had never **learned Cantonese** before. At first, it was difficult for me to communicate and study in a new environment. Through daily practice and determination, I can now communicate comfortably with my teachers and classmates in Cantonese. This experience taught me to embrace challenges and stay positive when facing change.\n\nI also believe **in continuous improvement**. Over the past year, I worked hard to strengthen my study habits and improve my academic performance, moving from 25th place to 8th place in my grade. This showed me that progress comes from perseverance and consistent effort.\n\nIn addition, **I enjoy serving others and contributing to my community**. As a student librarian, I help organize books and support my classmates. I also participate in volunteer activities, including flag-selling for charity and visiting elderly people in care homes. These experiences helped me develop empathy and responsibility. I was honoured to receive the “Serve and Lead Award”, one of only two students in Primary 5 to receive this recognition.",
+ yue:"「我**適應力強、勤力，而且樂於服務**。\n\n舊年我嚟到香港嗰陣，之前從來冇**學過粵語**。開頭喺一個全新環境度，溝通同讀書都好困難。靠住每日練習同堅持，我而家已經可以用粵語同老師、同學輕鬆咁溝通。呢段經歷教識我擁抱挑戰，面對轉變嗰陣保持積極。\n\n我亦都相信**持續進步**。過去一年，我好努力改善學習習慣、提升學業表現，年級排名由第 25 名進步到第 8 名。呢件事令我明白：進步係嚟自堅持同持續嘅努力。\n\n另外，**我好鍾意服務別人、為社群出一分力**。作為學生圖書管理員，我會幫手整理圖書、支援同學。我都有參加義工活動，包括慈善賣旗同去護老院探訪長者。呢啲經歷令我培養咗同理心同責任感。我好榮幸攞到「Serve and Lead Award」，小五全級只有兩個同學得到呢個嘉許。」",
+ yueNote:"三個優點之間停一拍，講嘅時候望住面試官；「25 名進步到第 8 名」一定要講得清楚。"},
+
+{id:"G4",cat:"G",en:"What are your weaknesses?",cn:"你的缺点是什么？",
+ tip:"🧩 结构公式：一个真实但不致命的缺点 → 我明白它的影响 → 我正在做的具体行动。原稿选「毅力／坚持」：承认有时会气馁、想放弃，然后说正在学习「调整心态 + 把困难拆小 + 一步一步解决」。⚠️ 与 B3 版本不同：B3 用「粤语口语弱」，本版用「毅力待加强」——面试时只挑一版讲，千万不要两版都讲。",
+ tipEn:"Formula: one real but non-fatal weakness → why it matters → the concrete action you are taking. This version uses perseverance: admit you sometimes feel discouraged, then show you are learning to adjust your mindset and break difficulties into smaller steps. Note: B3 uses a different weakness — pick only one on the day.",
+ tipYue:"結構公式：一個真實但唔致命嘅缺點 → 我明白佢嘅影響 → 我而家做緊嘅具體行動。呢版用「毅力」：承認有時會氣餒、想放棄，然後講你學緊「調整心態 ＋ 將困難拆細 ＋ 一步一步解決」。⚠️ 同 B3 唔同：B3 用「粵語口語弱」，呢版用「毅力待加強」——面試只揀一版講。",
+ cnA:"面对重大挑战的时候，我还需要**加强自己的毅力**。有时候我会觉得气馁，甚至想放弃。我明白坚持有多重要。所以我现在正在学习调整自己的心态，把困难拆成更小的部分，然后**一步一步**去解决它们。\n\n我也在提醒自己：进步不是一次完成的，而是每天累积回来的——就像我学粤语一样。",
+ enA:"When facing major challenges, I still need to **improve my perseverance**. Sometimes I feel discouraged and want to give up. I understand the importance of persistence. I am learning to adjust my mindset, break difficulties into smaller parts and **solve** them step by step.\n\nI also remind myself that progress is not made in one go — it builds up day by day, just like learning Cantonese.",
+ yue:"「面對大挑戰嘅時候，我仲需要**加強自己嘅毅力**。有時我會覺得氣餒，甚至想放棄。我明白堅持有幾重要。所以我而家學緊調整自己嘅心態，將困難拆細啲，然後**一步一步**去解決。\n\n我都不停提醒自己：進步唔係一次就做到，係每日累積返嚟嘅——好似我學粵語咁。」",
+ yueNote:"講缺點要淡定、唔好垂頭；最後一定要接一句「我學緊點做」，面試官先會覺得你有成長型思維。"},
+
+{id:"G5",cat:"G",en:"What are your interests / hobbies?",cn:"你的兴趣／爱好是什么？",
+ tip:"🧩 结构公式：两个爱好，**一动一静，都要落到「能力」**——① 养小动物（自学能力＋同理心＋责任感）；② 手钟队（团队合作＋纪律＋专注）。最加分的一句是「**为了好好照顾宠物，我会主动看书、看学习视频研究习性**」，因为它证明你会自学。两项比赛的奖牌就是证据。收尾一句：兴趣不只是消遣，还是我学习的方式。",
+ tipEn:"Formula: two hobbies — one quiet, one active — each linked to a skill. Pets show self-learning, empathy and responsibility; the handchime team shows teamwork, discipline and focus. The strongest line is that you read books and watch videos by yourself to care for your pets properly. Close with: hobbies are not just pastimes, they are how I learn.",
+ tipYue:"結構公式：兩個興趣，**一靜一動，兩樣都要落到「能力」**——① 養小動物（自學能力＋同理心＋責任感）；② 手鐘隊（團隊合作＋紀律＋專注）。最加分嘅一句係「**為咗好好照顧寵物，我會主動睇書、睇教學片研究習性**」。收尾講一句：興趣唔止係消遣，仲係我學嘢嘅方式。",
+ cnA:"我很喜欢**养小动物**。为了好好照顾我的宠物，我会主动看书、看学习视频，研究不同品种的习性。我养过猫、仓鼠、龙猫和花枝鼠。我会观察动物的需要，管理它们的饮食和生活环境。这个爱好培养了我的同理心，也教会我什么是责任，以及尊重所有生命。\n\n我也**很喜欢做学校手钟队的一员，和队友一起演出**。通过恒常练习和比赛，我学会了团队合作、纪律和专注。我们队在 2026 香港校际音乐比赛（手铃及手钟）中获得银奖，并在 2026 HMHK 国际手铃比赛中获得铜奖。",
+ enA:"I'm fond of **keeping small animals.** To look after my pets well, I proactively read books and watch learning videos to study the habits of different species. I've cared for cats, hamsters, chinchillas and fancy rats. I observe animals' needs, manage their diets and living environment. This hobby cultivates my empathy, and teaches me responsibility and respect for all living things.\n\nI also **enjoy being a member of my school handchime team and performing with my teammates.** Through regular practice and competitions, I have learned teamwork, discipline and concentration. Our team received the Silver Award in the Joint School Music Competition 2026 (Handbell and Handchime) and the Bronze Award in the 2026 HMHK International Handbell Competition.",
+ yue:"「我好鍾意**養小動物**。為咗好好照顧啲寵物，我會主動睇書、睇教學片，研究唔同品種嘅習性。我養過貓、倉鼠、龍貓同花枝鼠。我會觀察動物嘅需要，管理佢哋嘅飲食同生活環境。呢個興趣培養咗我嘅同理心，都教識我乜嘢係責任，同埋尊重所有生命。\n\n我亦都**好鍾意做學校手鐘隊嘅一份子，同隊友一齊演出**。透過恆常練習同比賽，我學識咗團隊合作、紀律同專注。我哋隊喺 2026 香港校際音樂比賽（手鈴同手鐘）攞到銀獎，喺 2026 HMHK 國際手鈴比賽攞到銅獎。」",
+ yueNote:"講花枝鼠可以笑住講，面試官會覺得你好有愛心；講到「龍貓」同「花枝鼠」呢兩個詞要講清楚，唔好含糊。"},
+
+{id:"G6",cat:"G",en:"What are your goals / ambitions?",cn:"你的目标／志向是什么？",
+ tip:"🧩 结构公式：三层递进——① 学术（继续挑战自己、打好基础）→ ② 服务与领导力（参加活动、服务社群、做义工）→ ③ 平衡与坚持（经历过适应新环境的挑战，所以更懂得坚持；追求学业、服务、个人成长三方面平衡）。这一版在原稿中已经是「Enhanced Version」，可以直接用；收尾金句：我希望成为一个既能读好书、又愿意帮助别人的人。",
+ tipEn:"Three layers: academic (keep challenging yourself, build a strong foundation) → service and leadership (join activities, serve the community, volunteer) → balance and persistence (having adapted to a new environment, you now know how to persist). Close with: I hope to be someone who both studies well and is willing to help others.",
+ tipYue:"三層遞進：① 學術（繼續挑戰自己、打好基礎）→ ② 服務同領導力（參加活動、服務社群、做義工）→ ③ 平衡同堅持（經歷過適應新環境嘅挑戰，所以更懂得堅持；追求學業、服務、個人成長三方面平衡）。收尾金句：我希望成為一個既能讀好書、又願意幫人嘅人。",
+ cnA:"升上中学之后，我希望在学业上继续挑战自己，为将来的学习打好扎实的基础。\n\n我期待参加不同的学校活动，服务学校社群，并且通过领导力和义工服务贡献他人。我也希望在音乐、运动和社区参与方面继续发展自己的兴趣，同时结识新朋友，从不同的经历中学习。\n\n经历过适应香港新环境的挑战之后，我会提醒自己在面对困难的时候更加坚持。我的目标是**在学业、服务和个人成长三方面取得平衡**。",
+ enA:"Upon entering secondary school, I hope to continue challenging myself academically and build a strong foundation for future learning.\n\nI look forward to taking part in different school activities, serving the school community, and contributing to others through leadership and volunteer service. I also hope to further develop my interests in music, sports and community engagement while making new friends and learning from diverse experiences.\n\nHaving experienced the challenge of adapting to a new environment in Hong Kong, I'll remind myself to be more persistent when facing challenges. I aim to achieve **a balance in academics, service and personal development.**",
+ yue:"「升上中學之後，我希望喺學業上繼續挑戰自己，為將來嘅學習打好扎實嘅基礎。\n\n我好期待參加唔同嘅學校活動，服務學校社群，並且透過領導力同義工服務貢獻別人。我亦都希望喺音樂、運動同社區參與方面繼續發展自己嘅興趣，同時識多啲新朋友，喺唔同嘅經歷度學習。\n\n經歷過適應香港新環境嘅挑戰之後，我會提醒自己面對困難嘅時候要更加堅持。我嘅目標係**喺學業、服務同個人成長三方面取得平衡**。」",
+ yueNote:"講目標要望住面試官、語氣肯定；最後「三方面取得平衡」講慢啲，作為收尾金句。"},
+
 {id:"Q1",cat:"A",en:"Why do you apply to our school?",cn:"你为什么申请我们学校？",
  tip:"必背目标学校那一版！见「学校策略」页。面试前确认当天面哪间，就只背那版，别背错校名！",
  tipEn:"Memorise the version for the school you are visiting that day — never mix up the school names.",
@@ -763,6 +858,81 @@ let curCat="all";
 const $=s=>document.querySelector(s);
 const save=()=>{localStorage.setItem(LS_M,JSON.stringify([...mastery]));localStorage.setItem(LS_C,JSON.stringify([...checks]));};
 
+/* ================= 🔊 朗读模块（浏览器内置语音，无需联网、无需安装）================= */
+const TTS=(()=>{
+  const S=window.speechSynthesis;
+  const ok=!!S&&typeof SpeechSynthesisUtterance!=="undefined";
+  let voices=[], rate=parseFloat(localStorage.getItem("ms_tts_rate_v1")||"0.85"), curBtn=null;
+
+  function load(){ try{ voices=S.getVoices()||[]; }catch(e){ voices=[]; } updateStat(); }
+  if(ok){ load(); if("onvoiceschanged" in S) S.onvoiceschanged=load; }
+
+  const PREF={ cn:["zh-CN","zh-SG","zh-TW"], yue:["zh-HK","yue","zh-TW","zh-CN"], en:["en-GB","en-US","en-AU"] };
+  const NORM=l=>String(l||"").replace(/_/g,"-");
+
+  /* 找最合适的语音；返回 {v, exact}。exact=false 表示是「近似替身」 */
+  function pick(lang){
+    const list=PREF[lang]||[];
+    for(const p of list){
+      const v=voices.find(x=>NORM(x.lang).toLowerCase()===p.toLowerCase());
+      if(v) return {v:v,exact:true};
+    }
+    const base=(list[0]||"en").split("-")[0];
+    const v=voices.find(x=>NORM(x.lang).toLowerCase().startsWith(base));
+    return v?{v:v,exact:false}:null;
+  }
+
+  /* 把文字变成适合朗读的样子：去掉 ** 标记、书名号、多余空白 */
+  function clean(s){
+    return String(s).replace(/\*\*/g,"")
+      .replace(/[「」『』【】]/g,"")
+      .replace(/\s*\n+\s*/g,"，")
+      .replace(/\s{2,}/g," ").trim();
+  }
+
+  function stop(){
+    if(!ok)return;
+    try{ S.cancel(); }catch(e){}
+    if(curBtn){ curBtn.classList.remove("playing"); curBtn=null; }
+  }
+
+  function speak(text,lang,btn){
+    if(!ok){ bubbleMsg("呢個瀏覽器唔支援朗讀，建議用 Edge 或 Chrome 打開 😢"); return; }
+    if(curBtn===btn){ stop(); return; }      // 再点同一个 = 停止
+    stop();
+    const t=clean(text); if(!t)return;
+    const u=new SpeechSynthesisUtterance(t);
+    const got=pick(lang);
+    if(got) u.voice=got.v;
+    u.lang= got ? NORM(got.v.lang) : (lang==="yue"?"zh-HK":lang==="en"?"en-GB":"zh-CN");
+    u.rate=rate; u.pitch=1; u.volume=1;
+    // 粤语近似替身提醒
+    if(lang==="yue" && (!got || NORM(got.v.lang).toLowerCase().indexOf("hk")<0)){
+      bubbleMsg("⚠️ 這台電腦沒裝粵語語音，暫時用普通話讀出。想聽正宗粵語，請用 Microsoft Edge 打開本檔案～");
+    }
+    u.onend=u.onerror=()=>{ if(curBtn===btn){ btn.classList.remove("playing"); curBtn=null; } };
+    curBtn=btn; if(btn) btn.classList.add("playing");
+    S.speak(u);
+  }
+
+  function setRate(r){ rate=parseFloat(r)||0.85; localStorage.setItem("ms_tts_rate_v1",String(rate)); }
+  function getRate(){ return rate; }
+
+  function updateStat(){
+    const el=document.getElementById("ttsStat"); if(!el)return;
+    if(!ok){ el.innerHTML='<span class="noV">此瀏覽器不支援朗讀</span>'; return; }
+    if(!voices.length){ el.innerHTML='<span style="color:var(--ink3);font-size:11.5px">語音清單載入中…</span>'; return; }
+    const hk=pick("yue"), en=pick("en"), cn=pick("cn");
+    const hkOk = hk && NORM(hk.v.lang).toLowerCase().indexOf("hk")>=0;
+    el.innerHTML=
+      `<span style="color:var(--ink3);font-size:11.5px">`+
+      `英文 ${en?"✅ ":"❌ "} · 中文 ${cn?"✅ ":"❌ "} · 粵語 `+
+      (hkOk?'✅':(hk?'<span class="noV">暫用普通話代替 · 建議改用 Edge</span>':'<span class="noV">未安裝 · 建議改用 Edge</span>'))+
+      `</span>`;
+  }
+  return {speak,stop,setRate,getRate,updateStat,ok:ok};
+})();
+
 /* Tabs */
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
   document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));
@@ -781,7 +951,19 @@ const chips=$("#chips");
 
 /* Render questions */
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+/* md()：先转义，再把 **关键词** 变成黄色高亮，把换行变成段落 */
+function md(s){
+  return esc(s)
+    .replace(/\*\*([^*]+)\*\*/g,'<mark>$1</mark>')
+    .replace(/\n/g,"<br>");
+}
+/* 🔊 朗读按钮：k=字段名，lang=cn|en|yue */
+function spk(k,lang,label,mini){
+  if(!window.speechSynthesis)return "";
+  return `<button class="spk${mini?" mini":""}" data-k="${k}" data-lang="${lang}" title="点击朗读${label||""}">🔊${label?" "+label:""}</button>`;
+}
 function render(){
+  TTS.stop();
   const kw=$("#search").value.trim().toLowerCase();
   const list=$("#list"); list.innerHTML="";
   let shown=0;
@@ -797,10 +979,15 @@ function render(){
     if(c.note){
       const n=document.createElement("div");n.className="catnote";
       n.innerHTML=`<div class="nt">${esc(c.note.title)}</div>
-        <div class="nl"><b>中</b>${esc(c.note.cn)}</div>
-        <div class="nl"><b>EN</b>${esc(c.note.en)}</div>
-        <div class="nl"><b>粵</b>${esc(c.note.yue)}</div>`;
+        <div class="nl"><b>中</b>${md(c.note.cn)}</div>
+        <div class="nl"><b>EN</b>${md(c.note.en)}</div>
+        <div class="nl"><b>粵</b>${md(c.note.yue)}</div>`;
       list.appendChild(n);
+    }
+    if(c.id==="G"){
+      const lg=document.createElement("div");lg.className="hllegend";
+      lg.innerHTML=`<span>🖍️ 背诵小帮手：</span><mark>黄色高亮</mark><span>= 原稿用粗体标出的必背关键词（先背这一层）；<b style="color:#7A2143">粉红高亮</b>= 粤语版对应的同一批关键词。其余文字用自己的话讲即可，不必逐字背。</span>`;
+      list.appendChild(lg);
     }
     items.forEach(q=>{
       shown++;
@@ -809,17 +996,20 @@ function render(){
       d.innerHTML=`
         <div class="head">
           <span class="no">${q.id}</span>
-          <span class="qt"><div class="en">${esc(q.en)}</div><div class="cn">${esc(q.cn)}</div></span>
+          <span class="qt"><div class="en">${esc(q.en)}${spk("en","en","听题目",1)}</div><div class="cn">${esc(q.cn)}</div></span>
           <label class="mk" onclick="event.stopPropagation()"><input type="checkbox" ${mastery.has(q.id)?"checked":""}> 已掌握</label>
           <span class="arrow">▶</span>
         </div>
         <div class="body">
-          <div class="blk"><span class="tag tip">💡 思路</span><p>${esc(q.tip)}</p>${q.tipEn?`<p class="tipL"><b>EN</b>${esc(q.tipEn)}</p>`:""}${q.tipYue?`<p class="tipL"><b>粵</b>${esc(q.tipYue)}</p>`:""}</div>
-          <div class="blk"><span class="tag cn">🇨🇳 中文答案</span><p>${esc(q.cnA)}</p></div>
-          <div class="blk"><span class="tag en">🇬🇧 English</span><p>${esc(q.enA)}</p></div>
-          <div class="blk"><span class="tag yue">🗣️ 粤语回答</span><p class="yueTxt">${esc(q.yue)}</p>${q.yueNote?`<div class="yueNote">💬 ${esc(q.yueNote)}</div>`:""}</div>
+          <div class="blk"><span class="tag tip">💡 思路</span>${spk("tip","cn","听思路")}<p>${md(q.tip)}</p>${q.tipEn?`<p class="tipL"><b>EN</b>${md(q.tipEn)}</p>`:""}${q.tipYue?`<p class="tipL"><b>粵</b>${md(q.tipYue)}</p>`:""}</div>
+          <div class="blk"><span class="tag cn">🇨🇳 中文答案</span>${spk("cnA","cn","听中文")}<p>${md(q.cnA)}</p></div>
+          <div class="blk"><span class="tag en">🇬🇧 English</span>${spk("enA","en","听英文")}<p>${md(q.enA)}</p></div>
+          <div class="blk"><span class="tag yue">🗣️ 粤语回答</span>${spk("yue","yue","听粤语")}${spk("cnA","yue","粤语读中文答案")}<p class="yueTxt">${md(q.yue)}</p>${q.yueNote?`<div class="yueNote">💬 ${md(q.yueNote)}</div>`:""}</div>
         </div>`;
       d.querySelector(".head").onclick=()=>d.classList.toggle("open");
+      d.querySelectorAll(".spk").forEach(b=>{
+        b.onclick=ev=>{ev.stopPropagation();TTS.speak(q[b.dataset.k],b.dataset.lang,b);};
+      });
       d.querySelector("input").onchange=e=>{
         e.target.checked?mastery.add(q.id):mastery.delete(q.id);
         d.classList.toggle("mastered",e.target.checked);save();render();
@@ -842,22 +1032,38 @@ function updateHero(){
 }
 $("#search").oninput=render;
 
+/* 朗读语速 */
+$("#ttsRate").value=String(TTS.getRate());
+$("#ttsRate").onchange=e=>TTS.setRate(e.target.value);
+TTS.updateStat();
+setTimeout(TTS.updateStat,600);
+
 /* Schools */
-$("#schools").innerHTML=SCHOOLS.map(s=>`
+$("#schools").innerHTML=SCHOOLS.map((s,si)=>`
   <div class="school">
     <h3>🏫 ${s.name} <span class="pill">${s.pill}</span></h3>
     <ul>${s.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>
-    <div class="ansbox"><b>Q1 定制答案 · 中：</b>${esc(s.q1cn)}</div>
-    <div class="ansbox"><b>Q1 Answer · EN：</b>${esc(s.q1en)}</div>
+    <div class="ansbox"><b>Q1 定制答案 · 中：</b>${spk("q1cn","cn","听中文",1)}${spk("q1cn","yue","听粤语",1)}<br>${esc(s.q1cn)}</div>
+    <div class="ansbox"><b>Q1 Answer · EN：</b>${spk("q1en","en","听英文",1)}<br>${esc(s.q1en)}</div>
     <div class="ansbox">${esc(s.extra)}</div>
   </div>`).join("");
+document.querySelectorAll("#schools .school").forEach((el,si)=>{
+  el.querySelectorAll(".spk").forEach(b=>{
+    b.onclick=ev=>{ev.stopPropagation();TTS.speak(SCHOOLS[si][b.dataset.k],b.dataset.lang,b);};
+  });
+});
 
 /* Parents */
 $("#parents").innerHTML='<div style="margin:14px 0;font-size:13px;color:var(--ink2)">香岛中学第二轮（约 2 月）学生 + 家长一起面谈。回答要真诚简洁，主打「进步曲线 25→8」，并加入家里做义工的身教（妈妈：残疾人公益 / 爸爸：学校义工 + 帮助新来港家庭），切忌背诵感。</div>'+
  PARENTS.map((p,i)=>`
   <div class="q"><div class="head"><span class="no">P${i+1}</span><span class="qt"><div class="cn" style="font-weight:600;font-size:14px">${esc(p.t)}</div></span><span class="arrow">▶</span></div>
-  <div class="body"><div class="blk"><span class="tag cn">🗨️ 参考回答</span><p>${esc(p.a)}</p></div></div></div>`).join("");
-document.querySelectorAll("#parents .q .head").forEach(h=>h.onclick=()=>h.parentElement.classList.toggle("open"));
+  <div class="body"><div class="blk"><span class="tag cn">🗨️ 参考回答</span>${spk("a","cn","听中文")}${spk("a","yue","听粤语")}<p>${esc(p.a)}</p></div></div></div>`).join("");
+document.querySelectorAll("#parents .q").forEach((el,i)=>{
+  el.querySelector(".head").onclick=()=>el.classList.toggle("open");
+  el.querySelectorAll(".spk").forEach(b=>{
+    b.onclick=ev=>{ev.stopPropagation();TTS.speak(PARENTS[i][b.dataset.k],b.dataset.lang,b);};
+  });
+});
 
 /* Checklist */
 let ckIdx=0;
